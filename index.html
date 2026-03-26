@@ -862,6 +862,124 @@
     .weather-hour .wh-temp { font-weight: 600; color: var(--text-primary); }
     .weather-hour .wh-precip { font-size: 0.68rem; color: #4ecdc4; }
 
+    /* ────── Currency Converter ────── */
+    .converter-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 32px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .rate-display {
+      text-align: center;
+      padding: 20px;
+      background: rgba(78,205,196,0.08);
+      border: 1px solid rgba(78,205,196,0.2);
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+    .rate-number {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #4ecdc4, #a8edea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .rate-meta {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+    .currency-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .currency-input {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      outline: none;
+      text-align: right;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      transition: border-color 0.2s;
+    }
+    .currency-input:focus { border-color: var(--accent-2); }
+    .currency-result {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #ff6b6b;
+      text-align: right;
+      padding: 16px 20px;
+      background: rgba(255,107,107,0.06);
+      border: 1px solid rgba(255,107,107,0.15);
+      border-radius: 12px;
+      min-height: 64px;
+    }
+    .quick-btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+    .quick-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.85rem;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+    }
+    .quick-btn:hover { background: rgba(255,255,255,0.14); color: var(--text-primary); }
+    .swap-btn {
+      display: block;
+      margin: 12px auto;
+      background: rgba(78,205,196,0.15);
+      border: 1px solid rgba(78,205,196,0.3);
+      color: #4ecdc4;
+      border-radius: 50%;
+      width: 40px; height: 40px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+    }
+    .swap-btn:hover { background: rgba(78,205,196,0.3); transform: rotate(180deg); }
+    .rate-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+    .rate-table th { color: var(--text-muted); font-size: 0.8rem; text-align: right; padding: 8px 12px; border-bottom: 1px solid var(--glass-border); }
+    .rate-table td { text-align: right; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+    .rate-table tr:last-child td { border-bottom: none; }
+    .krw-value { color: #ff6b6b; font-weight: 600; }
+    .converter-loading {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    .converter-error {
+      background: rgba(255,107,107,0.1);
+      border: 1px solid rgba(255,107,107,0.25);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: #ff6b6b;
+      font-size: 0.82rem;
+      margin-bottom: 16px;
+      display: none;
+    }
+
   </style>
 </head>
 <body>
@@ -1009,6 +1127,9 @@
       </button>
       <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-tips" data-day="tips">
         <span class="tab-day-num">Tips</span>💡 旅遊小貼士
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-converter" data-day="converter">
+        <span class="tab-day-num">Tool</span>💱 換錢計算機
       </button>
     </div>
   </div>
@@ -1577,6 +1698,60 @@
     </div>
   </div>
 
+  <!-- ══ Converter Panel ══ -->
+  <div id="panel-converter" class="day-panel" role="tabpanel">
+    <div class="day-header">
+      <div class="day-num-badge">Tool</div>
+      <div class="day-title">💱 換錢計算機</div>
+      <div class="day-subtitle">即時匯率，台幣 ⇄ 韓元換算</div>
+    </div>
+
+    <div class="converter-card">
+      <!-- 匯率顯示橫幅 -->
+      <div class="rate-display">
+        <div id="conv-rate-number" class="rate-number">載入中…</div>
+        <div id="conv-rate-meta" class="rate-meta">正在取得即時匯率…</div>
+      </div>
+
+      <!-- 錯誤提示 -->
+      <div id="conv-error" class="converter-error">⚠️ 無法取得即時匯率，請稍後重試。</div>
+
+      <!-- 輸入區 -->
+      <div id="conv-from-label" class="currency-label">🇹🇼 台幣金額（TWD）</div>
+      <input id="conv-input" class="currency-input" type="number" min="0" placeholder="0" inputmode="decimal" />
+
+      <!-- 快捷金額 -->
+      <div class="quick-btns" id="conv-quick-btns">
+        <button class="quick-btn" data-amount="500">500</button>
+        <button class="quick-btn" data-amount="1000">1,000</button>
+        <button class="quick-btn" data-amount="2000">2,000</button>
+        <button class="quick-btn" data-amount="3000">3,000</button>
+        <button class="quick-btn" data-amount="5000">5,000</button>
+        <button class="quick-btn" data-amount="10000">10,000</button>
+      </div>
+
+      <!-- Swap 按鈕 -->
+      <button class="swap-btn" id="conv-swap-btn" title="切換換算方向">⇄</button>
+
+      <!-- 結果 -->
+      <div id="conv-to-label" class="currency-label">🇰🇷 韓元結果（KRW）</div>
+      <div id="conv-result" class="currency-result">—</div>
+
+      <!-- 對照表 -->
+      <table class="rate-table" id="conv-ref-table">
+        <thead>
+          <tr>
+            <th id="conv-table-from-header" style="text-align:left;">台幣 (TWD)</th>
+            <th id="conv-table-to-header">韓元 (KRW)</th>
+          </tr>
+        </thead>
+        <tbody id="conv-table-body">
+          <tr><td colspan="2" style="text-align:center;color:var(--text-muted);padding:16px;">載入匯率後自動計算…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </main>
 
 <footer>
@@ -1807,6 +1982,163 @@
       { latlng: [35.1540, 129.0594], name: '田浦咖啡街',   transit: '地鐵2號線 田浦站，西面站1站' }
     ], { center: [35.1545, 129.0590], zoom: 15 });
   }
+
+  /* ── Currency Converter (TWD ⇄ KRW) ── */
+  (function () {
+    var PRIMARY_API   = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/twd.json';
+    var FALLBACK_API  = 'https://latest.currency-api.pages.dev/v1/currencies/twd.json';
+
+    var twdToKrwRate = null;   // 1 TWD = ? KRW
+    var isSwapped    = false;  // false = TWD→KRW, true = KRW→TWD
+
+    // TWD reference amounts for lookup table
+    var TWD_REFS = [100, 500, 1000, 5000];
+
+    function fmt(num) {
+      return Math.round(num).toLocaleString();
+    }
+
+    function updateUI() {
+      if (!twdToKrwRate) return;
+
+      // Rate banner
+      var rateEl   = document.getElementById('conv-rate-number');
+      var metaEl   = document.getElementById('conv-rate-meta');
+      if (rateEl) rateEl.textContent = '1 TWD = ' + twdToKrwRate.toFixed(2) + ' KRW';
+
+      // Labels & table headers
+      var fromLbl  = document.getElementById('conv-from-label');
+      var toLbl    = document.getElementById('conv-to-label');
+      var thFrom   = document.getElementById('conv-table-from-header');
+      var thTo     = document.getElementById('conv-table-to-header');
+
+      if (!isSwapped) {
+        if (fromLbl) fromLbl.textContent = '🇹🇼 台幣金額（TWD）';
+        if (toLbl)   toLbl.textContent   = '🇰🇷 韓元結果（KRW）';
+        if (thFrom)  thFrom.textContent  = '台幣 (TWD)';
+        if (thTo)    thTo.textContent    = '韓元 (KRW)';
+      } else {
+        if (fromLbl) fromLbl.textContent = '🇰🇷 韓元金額（KRW）';
+        if (toLbl)   toLbl.textContent   = '🇹🇼 台幣結果（TWD）';
+        if (thFrom)  thFrom.textContent  = '韓元 (KRW)';
+        if (thTo)    thTo.textContent    = '台幣 (TWD)';
+      }
+
+      // Re-calculate result from current input
+      convertCurrency();
+
+      // Rebuild reference table
+      var tbody = document.getElementById('conv-table-body');
+      if (tbody) {
+        if (!isSwapped) {
+          tbody.innerHTML = TWD_REFS.map(function (twd) {
+            return '<tr>'
+              + '<td>NT$ ' + fmt(twd) + '</td>'
+              + '<td class="krw-value">₩ ' + fmt(twd * twdToKrwRate) + '</td>'
+              + '</tr>';
+          }).join('');
+        } else {
+          var KRW_REFS = [1000, 5000, 10000, 50000];
+          tbody.innerHTML = KRW_REFS.map(function (krw) {
+            return '<tr>'
+              + '<td>₩ ' + fmt(krw) + '</td>'
+              + '<td class="krw-value">NT$ ' + (krw / twdToKrwRate).toFixed(1) + '</td>'
+              + '</tr>';
+          }).join('');
+        }
+      }
+    }
+
+    function convertCurrency() {
+      if (!twdToKrwRate) return;
+      var input  = document.getElementById('conv-input');
+      var result = document.getElementById('conv-result');
+      if (!input || !result) return;
+      var val = parseFloat(input.value);
+      if (isNaN(val) || val === 0 || input.value === '') {
+        result.textContent = '—';
+        return;
+      }
+      if (!isSwapped) {
+        result.textContent = '₩ ' + fmt(val * twdToKrwRate);
+      } else {
+        result.textContent = 'NT$ ' + (val / twdToKrwRate).toFixed(2);
+      }
+    }
+
+    function applyRate(data, source) {
+      twdToKrwRate = data.twd && data.twd.krw ? data.twd.krw : null;
+      if (!twdToKrwRate) { showError(); return; }
+
+      var dateStr = data.date || '—';
+      var metaEl  = document.getElementById('conv-rate-meta');
+      if (metaEl) metaEl.textContent = '最後更新：' + dateStr + '  ·  資料來源：' + source;
+
+      var errEl = document.getElementById('conv-error');
+      if (errEl) errEl.style.display = 'none';
+
+      updateUI();
+    }
+
+    function showError() {
+      var errEl = document.getElementById('conv-error');
+      if (errEl) errEl.style.display = 'block';
+      var rateEl = document.getElementById('conv-rate-number');
+      if (rateEl) rateEl.textContent = '匯率取得失敗';
+    }
+
+    function fetchExchangeRate() {
+      fetch(PRIMARY_API)
+        .then(function (res) { return res.json(); })
+        .then(function (data) { applyRate(data, 'fawazahmed0'); })
+        .catch(function () {
+          fetch(FALLBACK_API)
+            .then(function (res) { return res.json(); })
+            .then(function (data) { applyRate(data, 'currency-api.pages.dev'); })
+            .catch(showError);
+        });
+    }
+
+    // Wire up events after DOM ready
+    function initConverter() {
+      var input   = document.getElementById('conv-input');
+      var swapBtn = document.getElementById('conv-swap-btn');
+      var qBtns   = document.querySelectorAll('#conv-quick-btns .quick-btn');
+
+      if (input) {
+        input.addEventListener('input', convertCurrency);
+      }
+
+      if (swapBtn) {
+        swapBtn.addEventListener('click', function () {
+          isSwapped = !isSwapped;
+          var inp = document.getElementById('conv-input');
+          if (inp) inp.value = '';
+          var res = document.getElementById('conv-result');
+          if (res) res.textContent = '—';
+          updateUI();
+        });
+      }
+
+      qBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var inp = document.getElementById('conv-input');
+          if (inp) {
+            inp.value = btn.getAttribute('data-amount');
+            convertCurrency();
+          }
+        });
+      });
+
+      fetchExchangeRate();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initConverter);
+    } else {
+      initConverter();
+    }
+  })();
 
   // Auto-fetch weather on load
   fetchWeather();

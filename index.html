@@ -537,6 +537,58 @@
       letter-spacing: 0.06em;
     }
 
+    /* ────── Weather Banner ────── */
+    .weather-banner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: linear-gradient(135deg, rgba(30, 80, 160, 0.18), rgba(78, 205, 196, 0.10));
+      border: 1px solid rgba(78, 205, 196, 0.28);
+      border-radius: 14px;
+      padding: 14px 20px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .weather-icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .weather-info {
+      flex: 1;
+    }
+    .weather-temp {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .temp-high {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ff7f5c;
+    }
+    .temp-low {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #7ec8e3;
+    }
+    .weather-detail {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+    .weather-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: right;
+      flex-shrink: 0;
+    }
+
     /* ────── Scrollbar ────── */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
@@ -1107,6 +1159,72 @@
 </footer>
 
 <script>
+  /* ── Weather via Open-Meteo (free, no API key) ── */
+  function fetchWeather() {
+    var API_URL = 'https://api.open-meteo.com/v1/forecast'
+      + '?latitude=35.1796&longitude=129.0756'
+      + '&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max'
+      + '&timezone=Asia%2FSeoul&start_date=2026-03-31&end_date=2026-04-04';
+
+    function wmoEmoji(code) {
+      if (code === 0) return '☀️';
+      if (code <= 3) return '🌤️';
+      if (code === 45 || code === 48) return '🌫️';
+      if ([51,53,55,61,63,65].indexOf(code) !== -1) return '🌧️';
+      if ([71,73,75,77].indexOf(code) !== -1) return '❄️';
+      if ([80,81,82].indexOf(code) !== -1) return '🌦️';
+      if ([95,96,99].indexOf(code) !== -1) return '⛈️';
+      return '🌤️';
+    }
+
+    function buildBanner(emoji, max, min, precip) {
+      return '<div class="weather-banner">'
+        + '<span class="weather-icon">' + emoji + '</span>'
+        + '<div class="weather-info">'
+        + '<div class="weather-temp">'
+        + '<span class="temp-high">' + max + '°C</span>'
+        + '<span class="temp-low">' + min + '°C</span>'
+        + '</div>'
+        + '<div class="weather-detail">降雨機率 ' + precip + '% · 即時預報</div>'
+        + '</div>'
+        + '<div class="weather-label">釜山天氣</div>'
+        + '</div>';
+    }
+
+    function fallbackBanner() {
+      return '<div class="weather-banner">'
+        + '<span class="weather-icon">🌤️</span>'
+        + '<div class="weather-info">'
+        + '<div class="weather-detail">天氣資料載入中...</div>'
+        + '</div>'
+        + '<div class="weather-label">釜山天氣</div>'
+        + '</div>';
+    }
+
+    fetch(API_URL)
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        var daily = data.daily;
+        for (var i = 0; i < 5; i++) {
+          var panel = document.getElementById('panel-' + (i + 1));
+          if (!panel) continue;
+          var emoji  = wmoEmoji(daily.weathercode[i]);
+          var max    = Math.round(daily.temperature_2m_max[i]);
+          var min    = Math.round(daily.temperature_2m_min[i]);
+          var precip = daily.precipitation_probability_max[i] !== null
+                       ? daily.precipitation_probability_max[i] : 0;
+          var banner = buildBanner(emoji, max, min, precip);
+          panel.insertAdjacentHTML('afterbegin', banner);
+        }
+      })
+      .catch(function() {
+        for (var i = 1; i <= 5; i++) {
+          var panel = document.getElementById('panel-' + i);
+          if (panel) panel.insertAdjacentHTML('afterbegin', fallbackBanner());
+        }
+      });
+  }
+
   (function () {
     const tabs = document.querySelectorAll('.tab-btn');
     const panels = document.querySelectorAll('.day-panel');
@@ -1137,6 +1255,9 @@
       });
     });
   })();
+
+  // Auto-fetch weather on load
+  fetchWeather();
 </script>
 
 </body>

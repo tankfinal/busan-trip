@@ -384,6 +384,46 @@
     .day-3 .card { --card-accent: linear-gradient(90deg, #8e44ad, #a855f7); --card-glow: 0 0 24px rgba(168,85,247,0.12); }
     .day-4 .card { --card-accent: linear-gradient(90deg, #ff6b6b, #e74c3c); --card-glow: 0 0 24px rgba(231,76,60,0.15); }
     .day-5 .card { --card-accent: linear-gradient(90deg, #f4a226, #ffd32a); --card-glow: 0 0 24px rgba(244,162,38,0.15); }
+    .day-tips .card { --card-accent: linear-gradient(90deg, #4ecdc4, #1abc9c); --card-glow: 0 0 24px rgba(78,205,196,0.15); }
+
+    /* ────── Food Block ────── */
+    .food-block {
+      margin-top: 28px;
+      background: linear-gradient(135deg, rgba(255,165,2,0.07), rgba(255,107,107,0.05));
+      border: 1px solid rgba(255,165,2,0.2);
+      border-radius: 14px;
+      padding: 20px 22px;
+      backdrop-filter: blur(10px);
+    }
+    .food-block-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #ffa502;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .food-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 8px;
+    }
+    .food-list li {
+      font-size: 0.79rem;
+      color: var(--text-secondary);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+    .food-list li::before {
+      content: '🍴';
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      margin-top: 2px;
+    }
 
     .card-icon { font-size: 1.7rem; margin-bottom: 10px; }
     .card-name {
@@ -523,13 +563,34 @@
 
   <span class="hero-emoji">🌊</span>
   <h1>五天釜山旅遊清單</h1>
-  <p class="hero-sub">2026 · Busan, Korea · 海景優先 · 省錢玩透透</p>
+  <p class="hero-sub">2026.03.31 — 04.04 ✈ 桃園 → 釜山</p>
   <div class="hero-tags">
     <span class="hero-tag">🗓 5 Days</span>
     <span class="hero-tag">🇰🇷 Busan</span>
     <span class="hero-tag">💙 海景優先</span>
     <span class="hero-tag">💰 免費 / 低消費</span>
     <span class="hero-tag">🏠 西面站基地</span>
+  </div>
+
+  <!-- 機票資訊橫幅 -->
+  <div class="flight-banner" style="margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;position:relative;z-index:1;">
+    <div class="flight-card" style="background:rgba(255,255,255,0.07);border:1px solid rgba(78,205,196,0.3);border-radius:14px;padding:14px 22px;min-width:260px;max-width:340px;backdrop-filter:blur(12px);text-align:left;">
+      <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#4ecdc4;margin-bottom:8px;">✈ 去程 Outbound</div>
+      <div style="font-size:1rem;font-weight:800;color:#fff;margin-bottom:4px;">CI 188 &nbsp;·&nbsp; 3/31 (二)</div>
+      <div style="font-size:0.9rem;font-weight:600;color:rgba(255,255,255,0.85);">桃園 TPE 07:55 → 金海 PUS 11:15</div>
+      <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:6px;">直飛 2h20m &nbsp;·&nbsp; A321NEO &nbsp;·&nbsp; T1 → 航廈I</div>
+    </div>
+    <div class="flight-card" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,107,107,0.3);border-radius:14px;padding:14px 22px;min-width:260px;max-width:340px;backdrop-filter:blur(12px);text-align:left;">
+      <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#ff6b6b;margin-bottom:8px;">✈ 回程 Return</div>
+      <div style="font-size:1rem;font-weight:800;color:#fff;margin-bottom:4px;">CI 187 &nbsp;·&nbsp; 4/4 (六)</div>
+      <div style="font-size:0.9rem;font-weight:600;color:rgba(255,255,255,0.85);">金海 PUS 20:00 → 桃園 TPE 21:20</div>
+      <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:6px;">直飛 2h20m &nbsp;·&nbsp; A321NEO &nbsp;·&nbsp; 航廈I → T1</div>
+    </div>
+    <div class="flight-card" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:14px 22px;min-width:200px;backdrop-filter:blur(12px);text-align:left;display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;">訂位代號</div>
+      <div style="font-size:1.4rem;font-weight:900;color:#fff;letter-spacing:0.2em;">EKFXBW</div>
+      <div style="font-size:0.73rem;color:rgba(255,255,255,0.45);margin-top:6px;">Mr. Zhengyu Yang &nbsp;·&nbsp; 經濟艙</div>
+    </div>
   </div>
 
   <!-- SVG Wave -->
@@ -547,11 +608,20 @@
     <div class="transport-grid">
       <div class="transport-card">
         <div class="transport-card-title">🚇 捷運（推薦）</div>
-        <div class="transport-card-desc">金海機場輕軌「機場站」→「沙上站」，轉地鐵 2 號線至「219 西面站」。全程約 26 分鐘，費用低廉，T-money 卡可直接搭乘。</div>
+        <div class="transport-card-desc">
+          金海機場輕軌「機場站」→「沙上站」，轉地鐵 2 號線至「219 西面站」。全程約 26 分鐘，費用低廉。<br><br>
+          <strong style="color:var(--accent-2)">T-money 卡</strong>可直接搭乘，無需另購票。
+        </div>
       </div>
       <div class="transport-card">
-        <div class="transport-card-title">🚌 機場木津巴士 2 號</div>
-        <div class="transport-card-desc">成人票價 6,000 韓元，單程約 50 分鐘，直達西面站（樂天酒店百貨）。行李多時較方便，但遇塞車時間不穩定。</div>
+        <div class="transport-card-title">🚌 機場巴士 2 號（行李多時首選）</div>
+        <div class="transport-card-desc">
+          乘車處：<strong style="color:var(--accent-2)">國際航線 1F 出口 3 號站牌</strong><br>
+          首班 07:00 ／ 末班 22:00<br>
+          單程約 50 分鐘，直達西面站<br>
+          票價：<strong style="color:var(--accent-2)">成人 ₩ 6,000</strong><br>
+          每人限帶 2 件 / 總重 30kg 行李
+        </div>
       </div>
     </div>
   </section>
@@ -562,12 +632,12 @@
     <div class="accom-card">
       <div class="accom-icon">🏨</div>
       <div>
-        <div class="accom-title">西面站住宿基地</div>
+        <div class="accom-title">Gem Stay Seomyeon</div>
         <div class="accom-detail">
-          <strong>地址：</strong>#204, 752, Jungang-daero, Busanjin-gu, 釜山鎮區<br>
-          <strong>地鐵：</strong>2 號線「219 西面站」步行可達，交通極便利<br>
-          <strong>周邊：</strong>西面地下街、樂天百貨、田浦咖啡街、多家便利商店與餐廳<br>
-          <strong>優勢：</strong>釜山交通核心，前往海雲台、廣安里、南浦洞均可直達，是五天行程最佳基地
+          <strong>地址：</strong>#204, 752, Jungang-daero, Busanjin-gu, 釜山鎮區 47245<br>
+          <strong>地鐵：</strong>1 號線「119 西面站」＆ 2 號線「219 西面站」轉乘站步行可達<br>
+          <strong>周邊：</strong>西面地下街、樂天百貨免稅店、田浦咖啡街、NC 百貨、西面青春街<br>
+          <strong>優勢：</strong>釜山交通核心樞紐，前往海雲台、廣安里、南浦洞、甘川洞均可直達，是五天行程最佳基地
         </div>
       </div>
     </div>
@@ -577,19 +647,22 @@
   <div class="tab-bar-wrapper">
     <div class="tab-bar" role="tablist" aria-label="行程日期">
       <button class="tab-btn active" role="tab" aria-selected="true"  aria-controls="panel-1" data-day="1">
-        <span class="tab-day-num">Day</span>01 抵達釜山
+        <span class="tab-day-num">Day</span>01 西面散策
       </button>
       <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-2" data-day="2">
-        <span class="tab-day-num">Day</span>02 最東路線
+        <span class="tab-day-num">Day</span>02 東部海岸
       </button>
       <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-3" data-day="3">
-        <span class="tab-day-num">Day</span>03 海雲台
+        <span class="tab-day-num">Day</span>03 南部海港
       </button>
       <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-4" data-day="4">
-        <span class="tab-day-num">Day</span>04 廣安里
+        <span class="tab-day-num">Day</span>04 慶州古都
       </button>
       <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-5" data-day="5">
-        <span class="tab-day-num">Day</span>05 慶州返程
+        <span class="tab-day-num">Day</span>05 海雲台返程
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-tips" data-day="tips">
+        <span class="tab-day-num">Tips</span>💡 旅遊小貼士
       </button>
     </div>
   </div>
@@ -598,59 +671,64 @@
   <div id="panel-1" class="day-panel day-1 active" role="tabpanel">
     <div class="day-header">
       <div class="day-num-badge">Day 01</div>
-      <div class="day-title">抵達釜山 × 西面商圈 / 南浦洞 / 釜山塔</div>
-      <div class="day-subtitle">安頓後在住宿附近走走，感受西面與南浦洞的城市脈動</div>
+      <div class="day-title">抵達西面 × 文青散策</div>
+      <div class="day-subtitle">飛機落地後安頓入住，下午田浦咖啡街放鬆，晚上西面商圈採買</div>
     </div>
     <div class="cards">
       <div class="card">
-        <div class="card-icon">🏙️</div>
-        <div class="card-name">西面商圈</div>
-        <div class="card-desc">釜山最繁華的商業中心，地下街延伸數百公尺，美妝、服飾、小吃應有盡有。逛街不消費完全沒壓力，是認識釜山現代面的最佳入口。</div>
-        <div class="card-addr">📍 西面地下街 / 釜山鎮區</div>
+        <div class="card-icon">✈️</div>
+        <div class="card-name">CI 188 抵達金海機場 → Gem Stay</div>
+        <div class="card-desc">11:15 降落金海機場（航廈I）。前往西面方式：<br>
+          ① <strong>機場巴士2號</strong>：國際航線1F 出口3號站牌，首班07:00，50分鐘直達西面站，₩6,000。<strong>行李限2件/30kg</strong>。<br>
+          ② <strong>捷運</strong>：金海輕軌「機場站」→「沙上站」轉地鐵2號線→「219西面站」，約26分鐘。<br>
+          抵達後 Check-in，放下行李，正式開啟釜山旅程！</div>
+        <div class="card-addr">📍 Gem Stay Seomyeon，#204, 752, Jungang-daero, Busanjin-gu, 釜山 47245</div>
         <div class="card-footer">
-          <span class="badge badge-free">✓ 免費逛街</span>
-          <span class="badge badge-tip">🛍 西面地下街必逛</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🏬</div>
-        <div class="card-name">樂天百貨釜山總店</div>
-        <div class="card-desc">亞洲最大樂天百貨之一，地下食品樓層有各式韓國熟食、甜點，價格平實。就算不買東西，逛逛吹冷氣也值得。</div>
-        <div class="card-addr">📍 Jungang-daero, Busanjin-gu（西面站旁）</div>
-        <div class="card-footer">
-          <span class="badge badge-free">✓ 免費入場</span>
-          <span class="badge badge-cheap">🍱 地下美食 ₩ 4,000 起</span>
+          <span class="badge badge-cheap">🚌 巴士 ₩ 6,000</span>
+          <span class="badge badge-tip">🧳 行李限 2 件/30kg</span>
+          <span class="badge badge-tip">🚇 捷運約 26 分</span>
         </div>
       </div>
       <div class="card">
         <div class="card-icon">☕</div>
         <div class="card-name">田浦咖啡街</div>
-        <div class="card-desc">釜山最有名的咖啡一條街，數十家個性咖啡廳林立，建築風格各異，隨便走進一家都有好拍的角落。傍晚燈光亮起更有氣氛。</div>
-        <div class="card-addr">📍 田浦洞，地鐵 2 號線田浦站附近</div>
+        <div class="card-desc">距離西面站僅一站（田浦站），是釜山最著名的文青咖啡一條街。數十家個性咖啡廳林立，建築風格各異，適合搭機後放鬆漫步。傍晚燈光亮起更有氣氛，隨便走進一家都有好拍的角落。</div>
+        <div class="card-addr">📍 田浦洞，地鐵 2 號線「田浦站」附近</div>
         <div class="card-footer">
           <span class="badge badge-cheap">☕ 咖啡 ₩ 4,000–7,000</span>
-          <span class="badge badge-tip">📸 打卡熱點</span>
+          <span class="badge badge-tip">📸 文青打卡熱點</span>
         </div>
       </div>
       <div class="card">
-        <div class="card-icon">🗼</div>
-        <div class="card-name">釜山塔 &amp; 龍頭山公園</div>
-        <div class="card-desc">龍頭山公園登高俯瞰南浦洞港口與釜山市景，完全免費。塔外打卡也很好拍，內部展望台可視預算選擇。夜晚燈火璀璨。</div>
-        <div class="card-addr">📍 龍頭山路 37-55，中區</div>
+        <div class="card-icon">🛍️</div>
+        <div class="card-name">西面地下街</div>
+        <div class="card-desc">西面站正下方的大型地下購物街，美妝、服飾、配件、小吃全部囊括，延伸數百公尺。不買東西只逛完全沒壓力，是認識釜山現代商業面的最佳入口。</div>
+        <div class="card-addr">📍 西面站地下，釜山鎮區</div>
         <div class="card-footer">
-          <span class="badge badge-free">✓ 公園免費</span>
-          <span class="badge badge-cheap">🗼 塔內 ₩ 8,000（可選）</span>
+          <span class="badge badge-free">✓ 免費逛街</span>
+          <span class="badge badge-tip">🛍 住宿旁直達</span>
         </div>
       </div>
       <div class="card">
-        <div class="card-icon">🫕</div>
-        <div class="card-name">南浦洞 豬肉湯飯</div>
-        <div class="card-desc">釜山名物「돼지국밥」，一碗滷豬肉湯飯香濃暖胃，是在地人的日常料理。南浦洞一帶老字號多，價格親民，第一晚必吃。</div>
-        <div class="card-addr">📍 南浦洞一帶多家老店</div>
+        <div class="card-icon">🏬</div>
+        <div class="card-name">樂天百貨釜山總店（含免稅店）</div>
+        <div class="card-desc">亞洲最大規模樂天百貨之一，緊鄰西面站。地下食品樓層有各式韓國熟食、甜點與伴手禮，價格平實。免稅店在同棟樓，回程前採購超方便。</div>
+        <div class="card-addr">📍 Jungang-daero, Busanjin-gu（西面站旁）</div>
         <div class="card-footer">
-          <span class="badge badge-cheap">₩ 約 8,000–10,000</span>
+          <span class="badge badge-free">✓ 免費入場</span>
+          <span class="badge badge-tip">🧾 免稅店同棟</span>
         </div>
       </div>
+    </div>
+    <!-- 美食推薦 -->
+    <div class="food-block">
+      <div class="food-block-title">🍽️ Day 1 美食推薦</div>
+      <ul class="food-list">
+        <li><strong>西面豬肉湯飯（돼지국밥）</strong>｜釜山名物，滷豬肉湯飯香濃暖胃，₩ 8,000–10,000</li>
+        <li><strong>西面 24 小時烤肉</strong>｜西面一號街附近多家不打烊烤肉店，宵夜首選</li>
+        <li><strong>田浦咖啡街特色甜點</strong>｜各家咖啡廳限定甜點，邊拍邊吃</li>
+        <li><strong>樂天百貨地下美食城</strong>｜韓國熟食、炸雞、甜糕，₩ 4,000 起</li>
+      </ul>
     </div>
   </div>
 
@@ -658,25 +736,15 @@
   <div id="panel-2" class="day-panel day-2" role="tabpanel">
     <div class="day-header">
       <div class="day-num-badge">Day 02</div>
-      <div class="day-title">最東路線 — Skyline Luge + 海東龍宮寺 + 機張市場</div>
-      <div class="day-subtitle">刺激滑車、海崖佛寺、新鮮螃蟹，一天衝完東部精華</div>
+      <div class="day-title">東部海岸 × 海味之旅</div>
+      <div class="day-subtitle">海崖佛寺、長腳蟹市場、斜坡滑車，晚上廣安大橋燈光秀收尾</div>
     </div>
     <div class="cards">
       <div class="card">
-        <div class="card-icon">🛷</div>
-        <div class="card-name">Skyline Luge 釜山斜坡滑車</div>
-        <div class="card-desc">從山頂俯衝而下的重力滑車，全程可自行控速，沿途海景一覽無遺。刺激感十足，是東部最熱門的戶外活動，建議早點去避開人潮。</div>
-        <div class="card-addr">📍 釜山廣域市機張郡松亭里</div>
-        <div class="card-footer">
-          <span class="badge badge-cheap">₩ 約 12,000–18,000（依圈數）</span>
-          <span class="badge badge-tip">🎿 建議 2–3 圈</span>
-        </div>
-      </div>
-      <div class="card">
         <div class="card-icon">🛕</div>
         <div class="card-name">海東龍宮寺</div>
-        <div class="card-desc">建在海蝕崖上的千年佛寺，浪花拍打岩石，香火與海景同框，是韓國少見的海岸寺廟奇景。早晨人少光線美，是全釜山最值得拍的景點之一。</div>
-        <div class="card-addr">📍 機張郡東面龍宮吉86</div>
+        <div class="card-desc">建在海蝕崖上的千年佛寺，浪花拍打岩石，香火與海景同框，是韓國極少見的海岸寺廟奇景。早晨人少光線絕美，是全釜山最值得拍的景點之一。建議上午第一站前往。</div>
+        <div class="card-addr">📍 Haedong Yonggungsa Temple, 86 Yonggung-gil, Gijang-gun（機張郡）</div>
         <div class="card-footer">
           <span class="badge badge-free">✓ 免費入場</span>
           <span class="badge badge-tip">🕖 早上 6 點開放</span>
@@ -684,14 +752,44 @@
       </div>
       <div class="card">
         <div class="card-icon">🦞</div>
-        <div class="card-name">機張市場 螃蟹街</div>
-        <div class="card-desc">機張以活蟹聞名全韓，市場周邊海鮮餐廳競爭激烈，價格比市區便宜許多。螃蟹粥、生蝦蓋飯、辣炒螃蟹都值得一試，午餐在此解決最划算。</div>
-        <div class="card-addr">📍 機張郡機張邑機張市場路</div>
+        <div class="card-name">機張市場 長腳蟹美食</div>
+        <div class="card-desc">機張以長腳蟹（대게）聞名全韓，市場周邊海鮮餐廳競爭激烈，螃蟹肉質鮮甜，價格遠比市區實惠。螃蟹粥、生蝦蓋飯、辣炒螃蟹都值得一試，午餐在此解決最划算。</div>
+        <div class="card-addr">📍 Gijang Market, 16 Eumnae-ro 104beon-gil, Gijang-gun（機張郡）</div>
         <div class="card-footer">
-          <span class="badge badge-cheap">₩ 約 15,000–25,000</span>
-          <span class="badge badge-tip">🦀 生蝦蓋飯必點</span>
+          <span class="badge badge-cheap">₩ 約 15,000–30,000</span>
+          <span class="badge badge-tip">🦀 長腳蟹 / 生蝦蓋飯必點</span>
         </div>
       </div>
+      <div class="card">
+        <div class="card-icon">🛷</div>
+        <div class="card-name">Skyline Luge 釜山斜坡滑車</div>
+        <div class="card-desc">從山頂俯衝而下的重力滑車，全程可自行控速，沿途海景一覽無遺。纜車上山、滑車下山，刺激感十足，是東部海岸最熱門的戶外體驗活動。建議下午前往。</div>
+        <div class="card-addr">📍 205 Gijanghaean-ro, Gijang-gun（機張海岸路 205）</div>
+        <div class="card-footer">
+          <span class="badge badge-paid">₩ 約 12,000–22,000（依圈數）</span>
+          <span class="badge badge-tip">🎿 建議 2–3 圈</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌉</div>
+        <div class="card-name">廣安里海灘 × 廣安大橋燈光秀</div>
+        <div class="card-desc">全長 7.4 公里的雙層大橋，夜間燈光秀每晚定時點亮，在廣安里海灘正對大橋欣賞是最佳免費視角。沿岸咖啡廳、小吃攤密布，魚板湯、炸物隨手可得。</div>
+        <div class="card-addr">📍 水營區 廣安海濱路 219（廣安里海灘）</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 免費欣賞</span>
+          <span class="badge badge-tip">💡 晚 9 點後點燈最美</span>
+        </div>
+      </div>
+    </div>
+    <!-- 美食推薦 -->
+    <div class="food-block">
+      <div class="food-block-title">🍽️ Day 2 美食推薦</div>
+      <ul class="food-list">
+        <li><strong>機張長腳蟹（대게）</strong>｜韓國最知名的螃蟹產地，肉質鮮甜，午餐必吃</li>
+        <li><strong>生蝦蓋飯（새우장덮밥）</strong>｜機張市場特色，生醃蝦鋪白飯，鮮甜下飯</li>
+        <li><strong>廣安里海灘魚板湯</strong>｜路邊攤 ₩ 1,000–2,000，邊看海邊吃暖胃</li>
+        <li><strong>廣安里海鮮炒碼麵</strong>｜附近多家海鮮麵館，料多鮮甜，₩ 10,000 起</li>
+      </ul>
     </div>
   </div>
 
@@ -699,86 +797,15 @@
   <div id="panel-3" class="day-panel day-3" role="tabpanel">
     <div class="day-header">
       <div class="day-num-badge">Day 03</div>
-      <div class="day-title">東邊路線 — 海雲台藍線公園 + BUSAN X the SKY + The Bay 101 夜景</div>
-      <div class="day-subtitle">海濱小火車、釜山最高觀景台、夜晚海灣燈光倒影</div>
+      <div class="day-title">南部文化 × 海港風情</div>
+      <div class="day-subtitle">彩色山坡聚落、韓國最大海鮮市場、南浦洞購物，夜晚海雲台摩天夜景</div>
     </div>
     <div class="cards">
-      <div class="card">
-        <div class="card-icon">🚂</div>
-        <div class="card-name">海雲台藍線公園（海岸列車）</div>
-        <div class="card-desc">沿廢棄鐵路改建的濱海步道，小火車緊貼海岸行駛，車窗外是一望無際的藍色海景。步道全線也可步行，免費漫遊感受最純粹的海岸風情。</div>
-        <div class="card-addr">📍 海雲台區 中洞驛 ~ 松亭驛 沿線</div>
-        <div class="card-footer">
-          <span class="badge badge-free">✓ 步道免費</span>
-          <span class="badge badge-cheap">🚂 海岸列車 ₩ 5,000（可選）</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🏖️</div>
-        <div class="card-name">海雲台海水浴場</div>
-        <div class="card-desc">釜山最著名的白沙灘，綿延 1.8 公里，沿岸摩天樓與海浪共存，視覺震撼。在此漫步、吹海風、吃路邊小吃，是最釜山的體驗。</div>
-        <div class="card-addr">📍 海雲台區 海雲台海濱路 264</div>
-        <div class="card-footer">
-          <span class="badge badge-free">✓ 免費入場</span>
-          <span class="badge badge-tip">🌅 黃昏最美</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🌆</div>
-        <div class="card-name">BUSAN X the SKY</div>
-        <div class="card-desc">海雲台 LCT 大樓 98–100 樓，釜山最高觀景台，可 360° 俯瞰整個海雲台海灘、廣安大橋與市區全景。傍晚入場可同時看日落和夜景，CP 值最高。</div>
-        <div class="card-addr">📍 海雲台區 達迎路 30（LCT The Sharp 大樓）</div>
-        <div class="card-footer">
-          <span class="badge badge-paid">₩ 約 27,000</span>
-          <span class="badge badge-tip">🌇 傍晚入場最值</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🌉</div>
-        <div class="card-name">The Bay 101 夜景</div>
-        <div class="card-desc">海雲台遊艇碼頭旁的複合商場，夜晚廣安大橋燈光倒映海面，氣氛極佳。戶外區域完全免費，坐在碼頭邊喝杯飲料看夜景是絕配。</div>
-        <div class="card-addr">📍 海雲台區 東白島路 2</div>
-        <div class="card-footer">
-          <span class="badge badge-free">✓ 戶外區免費</span>
-          <span class="badge badge-tip">🌃 晚 9 點後最美</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ Day 4 Panel ══ -->
-  <div id="panel-4" class="day-panel day-4" role="tabpanel">
-    <div class="day-header">
-      <div class="day-num-badge">Day 04</div>
-      <div class="day-title">廣安里 + 甘川洞文化村 + 札嘎其市場</div>
-      <div class="day-subtitle">廣安大橋全景、山坡彩色聚落、釜山最大海鮮市場</div>
-    </div>
-    <div class="cards">
-      <div class="card">
-        <div class="card-icon">🏖️</div>
-        <div class="card-name">廣安里海水浴場</div>
-        <div class="card-desc">以廣安大橋夜景聞名，白天海灘寬闊好拍，咖啡廳、小吃攤沿海密布。比海雲台少了一點觀光客，更有在地感。魚板湯、炸物隨手可得。</div>
-        <div class="card-addr">📍 水營區 廣安海濱路 219</div>
-        <div class="card-footer">
-          <span class="badge badge-free">✓ 海灘免費</span>
-          <span class="badge badge-cheap">🍢 路邊小吃 ₩ 1,000–2,000</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🌉</div>
-        <div class="card-name">廣安大橋夜景</div>
-        <div class="card-desc">全長 7.4 公里的雙層大橋，夜間燈光秀每晚定時點燈，在廣安里海灘對著橋看是免費的最佳視角。晚上再來一次，白天和夜晚完全不同風貌。</div>
-        <div class="card-addr">📍 廣安里海灘沿岸均可觀賞</div>
-        <div class="card-footer">
-          <span class="badge badge-free">✓ 免費欣賞</span>
-          <span class="badge badge-tip">💡 晚 9 點後點燈</span>
-        </div>
-      </div>
       <div class="card">
         <div class="card-icon">🎨</div>
         <div class="card-name">甘川洞文化村</div>
-        <div class="card-desc">層疊山坡上的彩色小屋群，韓版聖托里尼。巷弄間藏著壁畫、裝置藝術與特色小店，自由漫步探索即可。地圖 2,000 韓元含紀念小禮物，物超所值。</div>
-        <div class="card-addr">📍 沙下區 甘川洞 10-33</div>
+        <div class="card-desc">層疊山坡上的彩色小屋群，韓版聖托里尼。巷弄間藏著壁畫、裝置藝術與特色小店，自由漫步探索即可。地圖 ₩ 2,000 含紀念小禮物，物超所值。建議上午前往，人少光線好。</div>
+        <div class="card-addr">📍 203 Gamnae 2-ro, Saha-gu（沙下區甘川洞）</div>
         <div class="card-footer">
           <span class="badge badge-free">✓ 散步免費</span>
           <span class="badge badge-cheap">🗺 地圖 ₩ 2,000（含小禮物）</span>
@@ -787,13 +814,105 @@
       <div class="card">
         <div class="card-icon">🐟</div>
         <div class="card-name">札嘎其市場</div>
-        <div class="card-desc">韓國規模最大的海鮮市場，一樓是活魚攤販，二樓可加工代客料理。生章魚、活蝦、海螺應有盡有，現買現吃最新鮮，是釜山海鮮體驗最集中的地方。</div>
-        <div class="card-addr">📍 中區 札嘎其海岸路 52</div>
+        <div class="card-desc">韓國規模最大的海鮮市場，一樓是活魚攤販，二樓可加工代客料理。生章魚、帝王蟹、活蝦、海螺應有盡有，現買現吃最新鮮。生章魚入口彈牙鮮甜，是釜山必體驗的美食。</div>
+        <div class="card-addr">📍 52 Jagalchihaean-ro, Jung-gu（中區札嘎其海岸路 52）</div>
         <div class="card-footer">
-          <span class="badge badge-cheap">₩ 海鮮依市價，加工費另計</span>
+          <span class="badge badge-cheap">₩ 依市價，加工費另計</span>
           <span class="badge badge-tip">🦑 生章魚必體驗</span>
         </div>
       </div>
+      <div class="card">
+        <div class="card-icon">🏙️</div>
+        <div class="card-name">南浦洞商圈 + 釜山塔</div>
+        <div class="card-desc">南浦洞是釜山最熱鬧的老城區商圈，服飾、小吃、伴手禮林立。龍頭山公園登高可俯瞰港口與市景，釜山塔塔外打卡免費，塔內展望台視野絕佳。</div>
+        <div class="card-addr">📍 37-55 Yongdusan-gil, Jung-gu（中區龍頭山路）</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 公園免費</span>
+          <span class="badge badge-cheap">🗼 塔內展望 ₩ 8,000（可選）</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌃</div>
+        <div class="card-name">The Bay 101 摩天夜景</div>
+        <div class="card-desc">海雲台遊艇碼頭旁的複合商場，夜晚可欣賞廣安大橋燈光秀與摩天大樓倒映海面的壯觀景色。戶外區域完全免費，坐在碼頭邊喝杯飲料看夜景是絕配。</div>
+        <div class="card-addr">📍 海雲台區 東白島路 2（The Bay 101）</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 戶外區免費</span>
+          <span class="badge badge-tip">🌃 晚 9 點後最美</span>
+        </div>
+      </div>
+    </div>
+    <!-- 美食推薦 -->
+    <div class="food-block">
+      <div class="food-block-title">🍽️ Day 3 美食推薦</div>
+      <ul class="food-list">
+        <li><strong>札嘎其生章魚（산낙지）</strong>｜現切入口彈動，是釜山最刺激的美食體驗</li>
+        <li><strong>帝王蟹（킹크랩）</strong>｜札嘎其市場最豪華選擇，價格依市價</li>
+        <li><strong>南浦洞海鮮帝王蟹 / 烤肉</strong>｜多家老字號餐廳並立，任君選擇</li>
+        <li><strong>南浦洞雪濃湯（설렁탕）/ 蔘雞湯</strong>｜暖胃滋補，₩ 10,000 起</li>
+        <li><strong>南浦洞豬腳（족발）</strong>｜釜山知名豬腳街，皮Q肉嫩，₩ 20,000 起</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ Day 4 Panel ══ -->
+  <div id="panel-4" class="day-panel day-4" role="tabpanel">
+    <div class="day-header">
+      <div class="day-num-badge">Day 04</div>
+      <div class="day-title">慶州 × 千年古都一日遊</div>
+      <div class="day-subtitle">從西面出發約 1.5 小時，走入新羅王朝的歷史現場</div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🚄</div>
+        <div class="card-name">西面站 → 慶州 交通</div>
+        <div class="card-desc">從西面站出發，搭 KTX 或 ITX 新村號前往慶州，單程約 1 小時 10 分鐘至 1 小時 40 分鐘，班次密集方便。建議早出發，讓整天的行程更充裕。</div>
+        <div class="card-addr">📍 出發：釜山站 / 部田站 → 慶州站（Gyeongju-si, Gyeongsangbuk-do）</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">🚄 KTX/ITX ₩ 4,800–14,000</span>
+          <span class="badge badge-tip">⏱ 車程約 70–100 分鐘</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏛️</div>
+        <div class="card-name">大陵苑（天馬塚）</div>
+        <div class="card-desc">新羅王朝的古墳公園，23 座大型圓形陵墓在草地上壯觀排列，氣氛莊嚴靜謐。可進入天馬塚內部參觀出土文物，費用極低。清晨散步是最詩意的歷史旅行體驗。</div>
+        <div class="card-addr">📍 慶州市 皇南洞 陵南路 9號（Daereungwon Ancient Tombs）</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">₩ 約 3,000</span>
+          <span class="badge badge-tip">🌿 早晨光線最美</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏯</div>
+        <div class="card-name">瞻星台</div>
+        <div class="card-desc">東亞現存最古老的天文觀測台，建於西元 7 世紀新羅善德女王時代，石砌圓柱體造型獨特優美。周圍草坪開闊，可搭配大陵苑步行前往，兩處相距不遠。</div>
+        <div class="card-addr">📍 慶州市 仁旺洞 839-1（Cheomseongdae Observatory）</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">₩ 約 3,000</span>
+          <span class="badge badge-tip">📸 造型獨特必拍</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏘️</div>
+        <div class="card-name">皇理團路（황리단길）</div>
+        <div class="card-desc">慶州版的「益善洞」，古民家改建的咖啡廳、小店沿著百年老街綿延。傳統韓屋外牆配上現代設計感，超出想像的美拍聖地。下午慢慢逛，回程前在此喝杯咖啡。</div>
+        <div class="card-addr">📍 慶州市 皇南洞 一帶（황리단길 商圈）</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 散步免費</span>
+          <span class="badge badge-cheap">☕ 咖啡 ₩ 5,000–8,000</span>
+        </div>
+      </div>
+    </div>
+    <!-- 美食推薦 -->
+    <div class="food-block">
+      <div class="food-block-title">🍽️ Day 4 美食推薦</div>
+      <ul class="food-list">
+        <li><strong>慶州法酒（경주법주）</strong>｜慶州特產米酒，皇理團路多家餐廳可品嚐</li>
+        <li><strong>黃南麵包（황남빵）</strong>｜慶州名產紅豆餡餅，必買伴手禮，₩ 2,000/個</li>
+        <li><strong>皇理團路韓定食</strong>｜傳統韓屋環境用餐，₩ 12,000–18,000</li>
+        <li><strong>慶州冷麵（냉면）</strong>｜清涼爽口，適合夏天，₩ 8,000–10,000</li>
+      </ul>
     </div>
   </div>
 
@@ -801,66 +920,185 @@
   <div id="panel-5" class="day-panel day-5" role="tabpanel">
     <div class="day-header">
       <div class="day-num-badge">Day 05</div>
-      <div class="day-title">慶州一日遊 + 返程</div>
-      <div class="day-subtitle">千年古都探訪，傍晚回釜山搭車返家</div>
+      <div class="day-title">海雲台漫步 × 悠閒採買 × 返程</div>
+      <div class="day-subtitle">海岸小火車、高空觀景台，西面最後採買後搭機返家</div>
     </div>
     <div class="cards">
       <div class="card">
-        <div class="card-icon">🏛️</div>
-        <div class="card-name">慶州 大陵苑（天馬塚）</div>
-        <div class="card-desc">新羅王朝的古墳公園，23 座大型圓形陵墓在草地上排列，氣氛莊嚴靜謐。可進入天馬塚內部參觀，費用極低。清晨散步是最詩意的旅行體驗。</div>
-        <div class="card-addr">📍 慶州市 皇南洞 陵南路 9號</div>
+        <div class="card-icon">🚂</div>
+        <div class="card-name">海雲台藍線公園（海岸列車）</div>
+        <div class="card-desc">沿廢棄鐵路改建的濱海公園，搭乘可愛的海岸小火車緊貼海岸行駛，車窗外是一望無際的東海美景。步道全線亦可步行免費漫遊，感受最純粹的釜山海岸風情。</div>
+        <div class="card-addr">📍 13 Dalmaji-gil 62beon-gil, Haeundae-gu（海雲台區）</div>
         <div class="card-footer">
-          <span class="badge badge-cheap">₩ 約 3,000</span>
-          <span class="badge badge-tip">🌿 早晨最安靜</span>
+          <span class="badge badge-free">✓ 步道免費</span>
+          <span class="badge badge-paid">🚂 海岸列車 ₩ 約 5,000</span>
         </div>
       </div>
       <div class="card">
-        <div class="card-icon">🏯</div>
-        <div class="card-name">慶州 瞻星台</div>
-        <div class="card-desc">東亞現存最古老的天文台，建於西元 7 世紀，造型獨特優美。周圍草坪開闊，可搭配大陵苑步行遊覽，兩處相距不遠。</div>
-        <div class="card-addr">📍 慶州市 仁旺洞 839-1</div>
+        <div class="card-icon">🏖️</div>
+        <div class="card-name">海雲台海灘 景觀午餐</div>
+        <div class="card-desc">釜山最著名的白沙灘，綿延 1.8 公里，沿岸摩天大樓與海浪共存。在海灘邊的景觀餐廳用午餐，一邊眺望海景一邊回味五天旅程，是最完美的告別時光。</div>
+        <div class="card-addr">📍 海雲台區 海雲台海濱路 264 沿線餐廳</div>
         <div class="card-footer">
-          <span class="badge badge-cheap">₩ 約 3,000</span>
+          <span class="badge badge-free">✓ 海灘免費</span>
+          <span class="badge badge-cheap">🍽️ 午餐 ₩ 15,000–30,000</span>
         </div>
       </div>
       <div class="card">
-        <div class="card-icon">⛩️</div>
-        <div class="card-name">慶州 佛國寺</div>
-        <div class="card-desc">聯合國世界遺產，新羅時代佛教建築的最高傑作。石橋、石塔、大雄殿層層遞進，氣勢恢宏。門票便宜，是慶州最值得入場的景點。</div>
-        <div class="card-addr">📍 慶州市 佛國路 385</div>
+        <div class="card-icon">🌆</div>
+        <div class="card-name">BUSAN X the SKY（可選）</div>
+        <div class="card-desc">海雲台 LCT 大樓 98–100 樓，釜山最高觀景台，可 360° 俯瞰整個海雲台、廣安大橋與市區全景。若航班是傍晚後，可在此享受日落與夜景，CP 值極高。視班機時間決定是否前往。</div>
+        <div class="card-addr">📍 30 Dalmaji-gil, Haeundae-gu（LCT The Sharp 大樓）</div>
         <div class="card-footer">
-          <span class="badge badge-cheap">₩ 6,000</span>
-          <span class="badge badge-tip">🌸 石窟庵可搭配同遊</span>
+          <span class="badge badge-paid">₩ 約 27,000</span>
+          <span class="badge badge-tip">🌇 日落時段入場最值</span>
         </div>
       </div>
       <div class="card">
-        <div class="card-icon">🚄</div>
-        <div class="card-name">慶州 → 釜山 → 返程</div>
-        <div class="card-desc">慶州到釜山搭 ITX 新村號或 KTX 約 40 分鐘，班次密集。傍晚回到釜山後可在西面商圈做最後採購，然後從釜山機場搭機返回。</div>
-        <div class="card-addr">📍 慶州驛 → 釜山驛</div>
+        <div class="card-icon">🛍️</div>
+        <div class="card-name">西面商圈最後採買</div>
+        <div class="card-desc">回到西面做最後採購：NC 百貨、西面青春街、西面地下街、樂天百貨免稅店。購物完畢後搭機場巴士 2 號返回金海機場或搭地鐵輕軌。旅程圓滿結束！</div>
+        <div class="card-addr">📍 西面商圈（NC百貨、西面青春街、西面一號街、樂天百貨）</div>
         <div class="card-footer">
-          <span class="badge badge-cheap">🚄 火車 ₩ 約 4,800–14,000</span>
-          <span class="badge badge-tip">⏱ 車程約 40 分鐘</span>
+          <span class="badge badge-free">✓ 散策免費</span>
+          <span class="badge badge-tip">🛍 免稅店同棟</span>
         </div>
       </div>
+    </div>
+
+    <!-- ⚠️ 航班提醒 -->
+    <div style="margin-top:20px;background:rgba(255,59,48,0.12);border:1.5px solid rgba(255,59,48,0.45);border-radius:14px;padding:18px 22px;backdrop-filter:blur(10px);">
+      <div style="font-size:0.95rem;font-weight:700;color:#ff3b30;margin-bottom:8px;display:flex;align-items:center;gap:8px;">⚠️ 航班提醒 — CI 187 返程</div>
+      <div style="font-size:0.82rem;color:rgba(255,255,255,0.78);line-height:1.8;">
+        航班：<strong style="color:#fff;">CI 187 &nbsp;·&nbsp; 4/4 (六)&nbsp; 金海 PUS 20:00 → 桃園 TPE 21:20</strong><br>
+        國際線建議提前 <strong style="color:#ff3b30;">至少 2 小時</strong>到達機場辦理報到手續。<br>
+        <strong style="color:#ff3b30;">請於 18:00 前出發</strong>（機場巴士 50 分鐘 / 捷運 26 分鐘）。<br>
+        機場巴士2號：西面站搭乘，₩6,000，行李限 2 件/30kg。
+      </div>
+    </div>
+
+    <!-- 美食推薦 -->
+    <div class="food-block">
+      <div class="food-block-title">🍽️ Day 5 美食推薦</div>
+      <ul class="food-list">
+        <li><strong>海雲台景觀餐廳午餐</strong>｜海灘邊一字排開，吃飯同時看海，₩ 15,000 起</li>
+        <li><strong>西面豬肉湯飯（最後一碗）</strong>｜回程前再吃一碗，道別釜山的滋味</li>
+        <li><strong>機場免稅店韓國零食</strong>｜韓國辣條、海苔、炸雞餅乾，最後補貨</li>
+        <li><strong>GS25 / CU 便利商店</strong>｜韓式飯糰、辛拉麵、霜淇淋，候機最佳選擇</li>
+      </ul>
     </div>
   </div>
 
-  <!-- ── 省錢提醒 ── -->
-  <section class="tips-section">
-    <div class="tips-card">
-      <div class="tips-title">💡 省錢旅行小提醒</div>
-      <ul class="tips-list">
-        <li>交通用 T-money 卡，地鐵公車通用，比買單程票省</li>
-        <li>景點多為免費，把預算留給海鮮美食</li>
-        <li>超市（GS25 / CU）買早餐，省時省錢</li>
-        <li>慶州一日遊搭 KTX 最快，提早訂票更便宜</li>
-        <li>海雲台藍線公園步道全程免費，不搭小火車也好走</li>
-        <li>魚板（어묵）是釜山必吃，路邊攤最便宜正宗</li>
-      </ul>
+  <!-- ══ Tips Panel ══ -->
+  <div id="panel-tips" class="day-panel day-tips" role="tabpanel">
+    <div class="day-header">
+      <div class="day-num-badge">Tips</div>
+      <div class="day-title">💡 旅遊貼士</div>
+      <div class="day-subtitle">交通、行李、商圈、市場必吃 — 出發前看這頁就夠</div>
     </div>
-  </section>
+    <div class="cards">
+      <!-- 交通卡 -->
+      <div class="card">
+        <div class="card-icon">💳</div>
+        <div class="card-name">T-money / Cashbee 交通卡</div>
+        <div class="card-desc">韓國地鐵、公車、計程車均可用 T-money 或 Cashbee 感應支付，比單程票便宜且可享地鐵轉乘優惠。抵達機場後於便利商店（GS25/CU）或地鐵站即可購買，儲值金額可在便利商店加值。旅程結束後剩餘金額可退款（手續費 ₩500）。</div>
+        <div class="card-addr">📍 機場入境大廳 GS25 / CU 便利商店皆有售</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">💳 卡費 ₩ 3,000–5,000</span>
+          <span class="badge badge-tip">✓ 全程通用</span>
+        </div>
+      </div>
+      <!-- 機場巴士 -->
+      <div class="card">
+        <div class="card-icon">🚌</div>
+        <div class="card-name">機場巴士 2 號 注意事項</div>
+        <div class="card-desc">乘車處：國際航線 <strong>1F 出口 3 號站牌</strong>。<br>首班 07:00 ／ 末班 22:00，班距約 30 分鐘。<br>單程 50 分鐘，直達西面站，票價 <strong>成人 ₩6,000</strong>。<br>行李限制：每人最多 <strong>2 件 / 總重 30kg</strong>，超額可能無法上車。<br>可用 T-money 感應或現金付款。</div>
+        <div class="card-addr">📍 金海機場國際航線 1F 出口 3 號站牌</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">₩ 6,000 / 人</span>
+          <span class="badge badge-tip">🧳 限 2 件/30kg</span>
+        </div>
+      </div>
+      <!-- 西面商圈 -->
+      <div class="card">
+        <div class="card-icon">🛍️</div>
+        <div class="card-name">西面商圈完整指南</div>
+        <div class="card-desc">西面是釜山最大的複合商業中心，購物、美食、娛樂一站搞定：<br>
+          · <strong>西面地下街</strong>：西面站正下方，美妝、服飾、小吃<br>
+          · <strong>樂天百貨釜山總店</strong>：免稅店同棟，靠近西面站<br>
+          · <strong>NC 百貨</strong>：西面青春街附近，年輕風格品牌<br>
+          · <strong>西面青春街 / 西面一號街</strong>：夜間小吃、24H 烤肉、豬肉湯飯</div>
+        <div class="card-addr">📍 釜山鎮區 西面站（地鐵1號線119/2號線219）</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 逛街免費</span>
+          <span class="badge badge-tip">🏠 住宿旁即達</span>
+        </div>
+      </div>
+      <!-- 市場必吃 -->
+      <div class="card">
+        <div class="card-icon">🦞</div>
+        <div class="card-name">市場必吃 Tips</div>
+        <div class="card-desc">
+          <strong>機張市場</strong>：長腳蟹（대게）是當地名物，午餐在市場周邊海鮮餐廳吃，比市區便宜 30%。可加點螃蟹粥收尾。<br><br>
+          <strong>札嘎其市場</strong>：生章魚（산낙지）現切入口彈動，是釜山最刺激的美食體驗。帝王蟹依市價，二樓加工費另計。購買前先確認總價再拍板。<br><br>
+          <strong>西面豬肉湯飯（돼지국밥）</strong>：釜山名物，₩8,000–10,000，隨時都好吃。
+        </div>
+        <div class="card-addr">📍 機張市場（機張郡）/ 札嘎其市場（中區）/ 西面各店</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">₩ 多數 15,000 以內</span>
+          <span class="badge badge-tip">🦑 生章魚必點</span>
+        </div>
+      </div>
+      <!-- 省錢綜合 -->
+      <div class="card">
+        <div class="card-icon">💰</div>
+        <div class="card-name">省錢旅行總攻略</div>
+        <div class="card-desc">
+          · 景點多為免費：海東龍宮寺、甘川洞文化村、廣安里海灘、The Bay 101 戶外區<br>
+          · 早餐在 GS25 / CU 解決，₩2,000–4,000 省時省錢<br>
+          · 慶州一日遊 KTX 最快，提早在 KorailTalk App 訂票更便宜<br>
+          · 海雲台藍線公園步道全程免費，小火車可選擇性搭乘<br>
+          · 魚板（어묵）路邊攤 ₩1,000–2,000，釜山最道地的街食<br>
+          · 免稅店回程前在樂天百貨辦理，護照帶好即可
+        </div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 多景點免費</span>
+          <span class="badge badge-tip">💡 預算重點放海鮮</span>
+        </div>
+      </div>
+      <!-- 實用 App -->
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <div class="card-name">實用 App &amp; 網站</div>
+        <div class="card-desc">
+          · <strong>Naver Map</strong>：韓國最準確地圖，捷運路線、巴士即時班次一把抓<br>
+          · <strong>KakaoTaxi</strong>：叫計程車，比路邊攔更安全便宜<br>
+          · <strong>KorailTalk</strong>：KTX / ITX 訂票，慶州一日遊必備<br>
+          · <strong>Papago</strong>：韓語翻譯神器，逛市場點菜必備<br>
+          · <strong>兌換韓元</strong>：建議台灣先換好，或到釜山市區換匯所（西面、南浦洞附近匯率較好）
+        </div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 全部免費 App</span>
+          <span class="badge badge-tip">📲 出發前下載</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 省錢提醒 -->
+    <div class="tips-section" style="margin-top:28px;">
+      <div class="tips-card">
+        <div class="tips-title">⚠️ 回程注意事項</div>
+        <ul class="tips-list">
+          <li>CI 187 起飛時間 20:00，<strong style="color:#ff6b6b;">18:00 前必須出發前往機場</strong></li>
+          <li>國際線建議提前 2–2.5 小時辦理報到，行李托運</li>
+          <li>機場巴士2號從西面站搭乘，50 分鐘抵達，₩6,000</li>
+          <li>捷運路線：西面站 → 沙上站 → 金海輕軌 → 機場站，約 26 分鐘</li>
+          <li>免稅品領取在機場出境側，確認好提貨地點</li>
+          <li>離境前在便利商店退還 T-money 剩餘金額（手續費 ₩500）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
 </main>
 

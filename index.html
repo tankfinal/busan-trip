@@ -991,6 +991,107 @@
       opacity: 0.85;
     }
 
+    /* ────── Breakfast Mini Cards ────── */
+    .breakfast-section {
+      margin-bottom: 20px;
+      background: rgba(255,165,2,0.06);
+      border: 1px solid rgba(255,165,2,0.2);
+      border-radius: 14px;
+      padding: 18px 20px;
+      backdrop-filter: blur(10px);
+    }
+    .breakfast-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #ffa502;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .breakfast-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+    }
+    .breakfast-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 12px 14px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .breakfast-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,165,2,0.3);
+    }
+    .breakfast-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+    .breakfast-kr {
+      font-size: 0.7rem;
+      color: #ffa502;
+      margin-bottom: 5px;
+    }
+    .breakfast-feat {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+    .breakfast-meta {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+    @media (max-width: 600px) {
+      .breakfast-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ────── Transit Details ────── */
+    .transit-details {
+      background: rgba(78,205,196,0.06);
+      border: 1px solid rgba(78,205,196,0.2);
+      border-radius: 12px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .transit-details summary {
+      padding: 14px 18px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #4ecdc4;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .transit-details summary::-webkit-details-marker { display: none; }
+    .transit-details[open] summary::after { content: ' ▲'; font-size: 0.7rem; }
+    .transit-details summary::after { content: ' ▼'; font-size: 0.7rem; }
+    .transit-steps { padding: 0 18px 16px; }
+    .transit-step {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .transit-step:last-child { border-bottom: none; }
+    .transit-step strong { color: var(--text-primary); }
+    .transit-warn {
+      font-size: 0.78rem;
+      color: #ff6b6b;
+      background: rgba(255,107,107,0.1);
+      border-radius: 6px;
+      padding: 6px 10px;
+      margin-top: 8px;
+    }
+
     /* ────── Metro Map Card ────── */
     .metro-card {
       background: var(--glass-bg);
@@ -1291,6 +1392,7 @@
         </div>
       </div>
       <div class="card" id="card-jeonpo">
+        <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/f/f6/%EC%84%9C%EB%A9%B43.jpg');"></div>
         <div class="card-icon">☕</div>
         <div class="card-name">田浦咖啡街</div>
         <div class="card-desc">距離西面站僅一站（田浦站），是釜山最著名的文青咖啡一條街。數十家個性咖啡廳林立，建築風格各異，適合搭機後放鬆漫步。傍晚燈光亮起更有氣氛，隨便走進一家都有好拍的角落。</div>
@@ -1394,8 +1496,80 @@
       <div class="day-subtitle">海崖佛寺、長腳蟹市場、斜坡滑車，晚上廣安大橋燈光秀收尾</div>
     </div>
     <div id="map-day2" class="map-container"></div>
+
+    <!-- 交通路線 -->
+    <details class="transit-details" open>
+      <summary>🚇 今日交通路線</summary>
+      <div class="transit-steps">
+        <div class="transit-step"><strong>西面站 → 海東龍宮寺</strong><br>
+          ① 西面站搭地鐵 2號線（往장산方向），約 25 分鐘到海雲台站<br>
+          ② 出 7號出口，在站外找巴士站牌<br>
+          ③ 搭 181號 或 100號巴士，在「용궁사·국립수산과학원」站下車<br>
+          ④ 沿指示牌步行約 10–15 分鐘到龍宮寺入口<br>
+          全程約 45–55 分鐘
+        </div>
+        <div class="transit-step"><strong>海東龍宮寺 → 機張市場</strong><br>
+          ① 回到「용궁사·국립수산과학원」同站牌<br>
+          ② 繼續搭 181號巴士往北（往機張方向），約 15–20 分鐘<br>
+          ③ 「기장시장」站下車，步行 1–2 分鐘即達
+        </div>
+        <div class="transit-step"><strong>機張市場 → Skyline Luge</strong><br>
+          沿海岸路往南步行約 5–10 分鐘即達（或計程車 5 分鐘）
+        </div>
+        <div class="transit-step"><strong>Skyline Luge → 廣安里</strong><br>
+          ① 搭 181號巴士回海雲台方向<br>
+          ② 轉地鐵 2號線，往호포方向到廣安站（광안역）<br>
+          ③ 出 5號出口，步行約 10 分鐘到廣安里海灘<br>
+          全程約 60 分鐘
+        </div>
+        <div class="transit-step"><strong>廣安里 → 西面（回程）</strong><br>
+          ① 從海灘步行回廣安站 5號出口（約 10 分鐘）<br>
+          ② 搭地鐵 2號線往호포方向，約 14 分鐘到西面站
+          <div class="transit-warn">⚠️ 末班車約 23:00–23:30，建議 23:00 前搭上</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 早餐推薦 -->
+    <div class="breakfast-section">
+      <div class="breakfast-title">🍳 出發前早餐（西面 1 號出口步行 3 分鐘）</div>
+      <div class="breakfast-grid">
+        <div class="breakfast-card">
+          <div class="breakfast-name">松亭三代豬肉湯飯</div>
+          <div class="breakfast-kr">송정3대국밥</div>
+          <div class="breakfast-feat">1946年老店，湯底熬24小時</div>
+          <div class="breakfast-meta">🕐 24小時　₩7,000</div>
+        </div>
+        <div class="breakfast-card">
+          <div class="breakfast-name">水營本家豬肉湯飯</div>
+          <div class="breakfast-kr">수영본가 돼지국밥</div>
+          <div class="breakfast-feat">評分4.9，奶白豬骨湯</div>
+          <div class="breakfast-meta">🕐 24小時　₩9,000</div>
+        </div>
+        <div class="breakfast-card">
+          <div class="breakfast-name">浦項豬肉湯飯</div>
+          <div class="breakfast-kr">포항돼지국밥</div>
+          <div class="breakfast-feat">70年老字號，5:00最早開門</div>
+          <div class="breakfast-meta">🕐 5:00–22:00　₩9,000</div>
+        </div>
+        <div class="breakfast-card">
+          <div class="breakfast-name">一品狀元豬肉湯飯</div>
+          <div class="breakfast-kr">일품장원돼지국밥</div>
+          <div class="breakfast-feat">清一色在地客，無觀光味</div>
+          <div class="breakfast-meta">🕐 24小時　₩9,000</div>
+        </div>
+        <div class="breakfast-card">
+          <div class="breakfast-name">濟州家鮑魚粥</div>
+          <div class="breakfast-kr">제주가 서면점</div>
+          <div class="breakfast-feat">不吃豬肉的清淡替代</div>
+          <div class="breakfast-meta">🕐 8:00–22:00　₩13,000</div>
+        </div>
+      </div>
+    </div>
+
     <div class="cards">
       <div class="card" id="card-haedong">
+        <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/6/6f/%ED%95%B4%EB%8F%99%EC%9A%A9%EA%B6%81%EC%82%AC_%EC%82%AC%EC%B0%B0_%EC%A0%84%EA%B2%BD.jpg');"></div>
         <div class="card-icon">🛕</div>
         <div class="card-name">海東龍宮寺</div>
         <div class="card-desc">建在海蝕崖上的千年佛寺，浪花拍打岩石，香火與海景同框，是韓國極少見的海岸寺廟奇景。早晨人少光線絕美，是全釜山最值得拍的景點之一。建議上午第一站前往。</div>
@@ -1411,6 +1585,7 @@
         </div>
       </div>
       <div class="card" id="card-gijang">
+        <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/d/d4/Haedong_Yonggungsa_Temple_view_on_sea.JPG');"></div>
         <div class="card-icon">🦞</div>
         <div class="card-name">機張市場 長腳蟹美食</div>
         <div class="card-desc">機張以長腳蟹（대게）聞名全韓，市場周邊海鮮餐廳競爭激烈，螃蟹肉質鮮甜，價格遠比市區實惠。螃蟹粥、生蝦蓋飯、辣炒螃蟹都值得一試，午餐在此解決最划算。</div>
@@ -1426,6 +1601,7 @@
         </div>
       </div>
       <div class="card" id="card-luge">
+        <div class="card-img" style="background:linear-gradient(135deg, rgba(78,205,196,0.3), rgba(10,14,26,0.8));"></div>
         <div class="card-icon">🛷</div>
         <div class="card-name">Skyline Luge 釜山斜坡滑車</div>
         <div class="card-desc">從山頂俯衝而下的重力滑車，全程可自行控速，沿途海景一覽無遺。纜車上山、滑車下山，刺激感十足，是東部海岸最熱門的戶外體驗活動。建議下午前往。</div>
@@ -1441,6 +1617,7 @@
         </div>
       </div>
       <div class="card" id="card-gwangalli">
+        <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/1/17/Gwangalli_Beach.jpg');"></div>
         <div class="card-icon">🌉</div>
         <div class="card-name">廣安里海灘 × 廣安大橋燈光秀</div>
         <div class="card-desc">全長 7.4 公里的雙層大橋，夜間燈光秀每晚定時點亮，在廣安里海灘正對大橋欣賞是最佳免費視角。沿岸咖啡廳、小吃攤密布，魚板湯、炸物隨手可得。</div>
@@ -1476,8 +1653,35 @@
       <div class="day-subtitle">彩色山坡聚落、韓國最大海鮮市場、南浦洞 + 國際市場購物，傍晚釜山塔俯瞰港灣</div>
     </div>
     <div id="map-day3" class="map-container"></div>
+
+    <!-- 交通路線 -->
+    <details class="transit-details" open>
+      <summary>🚇 今日交通路線</summary>
+      <div class="transit-steps">
+        <div class="transit-step"><strong>西面站 → 甘川洞文化村</strong><br>
+          ① 搭地鐵 1號線（往다대포方向），約 15 分鐘到土城站（토성역）<br>
+          ② 出 6號出口，右轉步行 2–3 分鐘到釜山大學醫院站牌<br>
+          ③ 搭 사하1-1 或 서구2號 社區小巴，約 10 分鐘<br>
+          ④ 「감정초등학교」站下車，步行 1 分鐘到入口<br>
+          全程約 30 分鐘　小巴車資約 ₩1,200
+        </div>
+        <div class="transit-step"><strong>甘川洞 → 札嘎其市場</strong><br>
+          ① 原站牌搭回程小巴回土城站<br>
+          ② 轉地鐵 1號線一站到札嘎其站<br>
+          ③ 出 10號出口，步行 2 分鐘
+        </div>
+        <div class="transit-step"><strong>札嘎其 → 南浦洞 → 國際市場 → 釜山塔</strong><br>
+          全程步行可達，各點距離 3–8 分鐘
+        </div>
+        <div class="transit-step"><strong>釜山塔 → 西面（回程）</strong><br>
+          從南浦站搭地鐵 1號線往노포方向，約 15 分鐘到西面站
+        </div>
+      </div>
+    </details>
+
     <div class="cards">
       <div class="card" id="card-gamcheon">
+        <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/e/ee/Gamcheon_Houses%2C_2024.jpg');"></div>
         <div class="card-icon">🎨</div>
         <div class="card-name">甘川洞文化村</div>
         <div class="card-desc">層疊山坡上的彩色小屋群，韓版聖托里尼。巷弄間藏著壁畫、裝置藝術與特色小店，自由漫步探索即可。地圖 ₩ 2,000 含紀念小禮物，物超所值。建議上午前往，人少光線好。</div>
@@ -1493,6 +1697,7 @@
         </div>
       </div>
       <div class="card" id="card-jagalchi">
+        <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/d/d4/Jagalchi_Market_20200523_019.jpg');"></div>
         <div class="card-icon">🐟</div>
         <div class="card-name">札嘎其市場</div>
         <div class="card-desc">韓國規模最大的海鮮市場，一樓是活魚攤販，二樓可加工代客料理。生章魚、帝王蟹、活蝦、海螺應有盡有，現買現吃最新鮮。生章魚入口彈牙鮮甜，是釜山必體驗的美食。</div>
@@ -1508,6 +1713,7 @@
         </div>
       </div>
       <div class="card" id="card-nampo">
+        <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/5/55/Nampo-Dong_Christmas_Lights_in_Busan.jpg');"></div>
         <div class="card-icon">🏙️</div>
         <div class="card-name">南浦洞商圈</div>
         <div class="card-desc">釜山最熱鬧的老城區商圈，服飾、小吃、伴手禮林立。龍頭山公園登高可俯瞰港口與市景，周邊巷弄也有許多釜山道地小吃。</div>
@@ -1523,6 +1729,7 @@
         </div>
       </div>
       <div class="card" id="card-gukje">
+        <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/8/8a/Gukje_Market%2C_October_2019_03.jpg');"></div>
         <div class="card-icon">🏪</div>
         <div class="card-name">國際市場（국제시장）</div>
         <div class="card-desc">釜山最著名的傳統市場，與南浦洞緊鄰，步行即達。販售乾貨、服飾、紀念品，街頭小吃豐富多元，是電影《國際市場》的拍攝地，感受老釜山的真實生活氣息。</div>
@@ -1538,6 +1745,7 @@
         </div>
       </div>
       <div class="card" id="card-busantower">
+        <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/32/Busan_Tower_and_Yongdusan_Park_20200522_003.jpg');"></div>
         <div class="card-icon">🗼</div>
         <div class="card-name">釜山塔</div>
         <div class="card-desc">矗立於龍頭山公園制高點的地標，塔外打卡免費，塔內展望台可俯瞰釜山港與整個南浦洞市區，傍晚時分港灣燈光漸亮，景色迷人。</div>
@@ -1574,8 +1782,36 @@
       <div class="day-subtitle">海灣碼頭、白沙灘、海岸小火車，傍晚登上釜山第一高樓俯瞰全市</div>
     </div>
     <div id="map-day4" class="map-container"></div>
+
+    <!-- 交通路線 -->
+    <details class="transit-details" open>
+      <summary>🚇 今日交通路線</summary>
+      <div class="transit-steps">
+        <div class="transit-step"><strong>西面 → The Bay 101</strong><br>
+          搭地鐵 2號線（往장산方向），約 28 分鐘到冬柏站<br>
+          出 1號出口，步行約 10–15 分鐘到 The Bay 101
+        </div>
+        <div class="transit-step"><strong>The Bay 101 → 海雲台海灘</strong><br>
+          沿海岸步行約 15–20 分鐘；或搭地鐵一站（冬柏→海雲台）再步行 5 分鐘
+        </div>
+        <div class="transit-step"><strong>海雲台 → 藍線公園（美浦站）</strong><br>
+          沿海岸往東步行約 15–20 分鐘到미포정거장<br>
+          或搭 39/100/141號巴士到「문탠로드 입구」站，步行 10 分鐘
+        </div>
+        <div class="transit-step"><strong>藍線公園 → BUSAN X the SKY</strong><br>
+          從미포站往西步行約 10–15 分鐘到 LCT 大樓<br>
+          或搭地鐵到中洞站（중동역）7號出口，步行 10–15 分鐘
+        </div>
+        <div class="transit-step"><strong>BUSAN X the SKY → 西面（回程）</strong><br>
+          步行到海雲台站（約 20 分鐘）→ 地鐵 2號線往호포方向，約 28 分鐘到西面
+          <div class="transit-warn">⚠️ 末班車約 23:15–23:30，建議 22:30 前出發</div>
+        </div>
+      </div>
+    </details>
+
     <div class="cards">
       <div class="card" id="card-bay101">
+        <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/4/44/Dongbaek_island_Busan.jpg');"></div>
         <div class="card-icon">⛵</div>
         <div class="card-name">The Bay 101（더베이101）</div>
         <div class="card-desc">海雲台濱海複合設施，有咖啡廳、餐廳與遊艇碼頭。白天可享海景配咖啡，晚上廣安大橋燈光秀與摩天大樓倒映海面，夜景絕美。戶外區域完全免費。</div>
@@ -1591,6 +1827,7 @@
         </div>
       </div>
       <div class="card" id="card-haeundae">
+        <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/e/ea/Haeundae_Beach_May_2024.jpg');"></div>
         <div class="card-icon">🏖️</div>
         <div class="card-name">海雲台海灘（해운대해수욕장）</div>
         <div class="card-desc">釜山最著名的海灘，白沙灘綿延 1.5 公里，沿岸摩天大樓與海浪共存。夏季熱鬧、春季人少舒適，是韓國代表性海灘景點。沿岸有豐富餐廳可用午餐。</div>
@@ -1606,6 +1843,7 @@
         </div>
       </div>
       <div class="card" id="card-blueline">
+        <div class="card-img" style="background:linear-gradient(135deg, rgba(78,205,196,0.3), rgba(10,14,26,0.8));"></div>
         <div class="card-icon">🚂</div>
         <div class="card-name">海雲台藍線公園（해운대블루라인파크）</div>
         <div class="card-desc">廢棄鐵路改建的海岸觀光小火車，沿著懸崖邊行駛，車窗外是一望無際的東海美景。步道全線亦可免費步行漫遊，是釜山必訪打卡點，景色絕美。</div>
@@ -1621,6 +1859,7 @@
         </div>
       </div>
       <div class="card" id="card-xthesky">
+        <div class="card-img" style="background:linear-gradient(135deg, rgba(78,205,196,0.3), rgba(10,14,26,0.8));"></div>
         <div class="card-icon">🌆</div>
         <div class="card-name">BUSAN X the SKY（부산엑스더스카이）</div>
         <div class="card-desc">位於釜山第一高樓 LCT 大樓 98–100 樓的展望台，360 度俯瞰釜山全景，可同時看到海雲台海灘、廣安大橋與市區天際線。日落時分入場最美，CP 值極高。</div>
@@ -1656,6 +1895,22 @@
       <div class="day-subtitle">西面漫步、田浦最後一杯咖啡，18:00 前出發機場</div>
     </div>
     <div id="map-day5" class="map-container"></div>
+
+    <!-- 交通路線 -->
+    <details class="transit-details" open>
+      <summary>🚇 今日交通路線</summary>
+      <div class="transit-steps">
+        <div class="transit-step"><strong>西面 → 田浦咖啡街</strong><br>
+          搭地鐵 2號線一站到田浦站（전포역），出 7號出口步行 5 分鐘
+        </div>
+        <div class="transit-step"><strong>返回機場</strong><br>
+          飯店 12號出口步行 2 分鐘到 Gem Stay 取行李<br>
+          搭機場巴士 2號（3號站牌）或捷運回金海機場
+          <div class="transit-warn">⚠️ 20:00 班機，建議 18:00 前出發，不晚於 17:30</div>
+        </div>
+      </div>
+    </details>
+
     <div class="cards">
       <div class="card">
         <div class="card-icon">🛍️</div>
@@ -2283,58 +2538,6 @@
   // Also try immediately in case DOMContentLoaded already fired
   if (document.readyState !== 'loading') {
     initMaps();
-  }
-
-  /* ── Wikimedia Attraction Images ── */
-  function injectImage(card, url) {
-    var img = document.createElement('div');
-    img.className = 'card-img';
-    img.style.backgroundImage = 'url(' + url + ')';
-    card.insertBefore(img, card.firstChild);
-  }
-
-  async function loadAttractionImages() {
-    var attractions = [
-      { cardId: 'card-jeonpo',              wiki: 'Jeonpo_Cafe_Street' },
-      { cardId: 'card-haedong',             wiki: 'Haedong_Yonggungsa' },
-      { cardId: 'card-gijang',              wiki: 'Gijang_County' },
-      { cardId: 'card-luge',               wiki: 'Skyline_Luge' },
-      { cardId: 'card-gwangalli',           wiki: 'Gwangalli_Beach' },
-      { cardId: 'card-gamcheon',            wiki: 'Gamcheon_Culture_Village' },
-      { cardId: 'card-jagalchi',            wiki: 'Jagalchi_Market' },
-      { cardId: 'card-nampo',              wiki: 'Nampo-dong,_Busan' },
-      { cardId: 'card-busantower',          wiki: 'Busan_Tower' },
-      { cardId: 'card-gukje',              wiki: 'Gukje_Market' },
-      { cardId: 'card-bay101',             wiki: 'Dongbaek_Island' },
-      { cardId: 'card-haeundae',           wiki: 'Haeundae_Beach' },
-      { cardId: 'card-blueline',           wiki: 'Haeundae_Blue_Line_Park' },
-      { cardId: 'card-xthesky',            wiki: 'LCT_The_Sharp' },
-      { cardId: 'card-seomyeon-underground', wiki: 'Seomyeon' },
-      { cardId: 'card-lotte',              wiki: 'Lotte_Department_Store' }
-    ];
-
-    for (var i = 0; i < attractions.length; i++) {
-      (function(item) {
-        fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + item.wiki)
-          .then(function(res) { return res.json(); })
-          .then(function(data) {
-            var imgUrl = (data.originalimage && data.originalimage.source)
-              || (data.thumbnail && data.thumbnail.source);
-            if (imgUrl) {
-              var card = document.getElementById(item.cardId);
-              if (card) injectImage(card, imgUrl);
-            }
-          })
-          .catch(function() { /* 靜默失敗 */ });
-      })(attractions[i]);
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    loadAttractionImages();
-  });
-  if (document.readyState !== 'loading') {
-    loadAttractionImages();
   }
 
   // Metro map lightbox

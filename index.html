@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -589,6 +591,13 @@
       flex-shrink: 0;
     }
 
+    /* ────── Map & Transit ────── */
+    .map-container { height: 260px; border-radius: 12px; overflow: hidden; margin: 0 0 20px 0; border: 1px solid var(--glass-border); }
+    .transit-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; background: rgba(78,205,196,0.15); color: #4ecdc4; border: 1px solid rgba(78,205,196,0.3); font-size: 0.78rem; text-decoration: none; cursor: pointer; transition: all 0.2s; }
+    .transit-btn:hover { background: rgba(78,205,196,0.28); }
+    .transit-info { font-size: 0.82rem; color: var(--text-secondary); margin-top: 6px; display: flex; align-items: flex-start; gap: 6px; }
+    .transit-info::before { content: '🚇'; flex-shrink: 0; }
+
     /* ────── Scrollbar ────── */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
@@ -726,6 +735,7 @@
       <div class="day-title">抵達西面 × 文青散策</div>
       <div class="day-subtitle">飛機落地後安頓入住，下午田浦咖啡街放鬆，晚上西面商圈採買</div>
     </div>
+    <div id="map-day1" class="map-container"></div>
     <div class="cards">
       <div class="card">
         <div class="card-icon">✈️</div>
@@ -746,9 +756,11 @@
         <div class="card-name">田浦咖啡街</div>
         <div class="card-desc">距離西面站僅一站（田浦站），是釜山最著名的文青咖啡一條街。數十家個性咖啡廳林立，建築風格各異，適合搭機後放鬆漫步。傍晚燈光亮起更有氣氛，隨便走進一家都有好拍的角落。</div>
         <div class="card-addr">📍 田浦洞，地鐵 2 號線「田浦站」附近</div>
+        <div class="transit-info">地鐵2號線 西面→田浦站（1站，2分鐘）</div>
         <div class="card-footer">
           <span class="badge badge-cheap">☕ 咖啡 ₩ 4,000–7,000</span>
           <span class="badge badge-tip">📸 文青打卡熱點</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.1617,129.0503&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
       <div class="card">
@@ -756,9 +768,11 @@
         <div class="card-name">西面地下街</div>
         <div class="card-desc">西面站正下方的大型地下購物街，美妝、服飾、配件、小吃全部囊括，延伸數百公尺。不買東西只逛完全沒壓力，是認識釜山現代商業面的最佳入口。</div>
         <div class="card-addr">📍 西面站地下，釜山鎮區</div>
+        <div class="transit-info">步行，西面站地下即達</div>
         <div class="card-footer">
           <span class="badge badge-free">✓ 免費逛街</span>
           <span class="badge badge-tip">🛍 住宿旁直達</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.1575,129.0591&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
       <div class="card">
@@ -766,9 +780,11 @@
         <div class="card-name">樂天百貨釜山總店（含免稅店）</div>
         <div class="card-desc">亞洲最大規模樂天百貨之一，緊鄰西面站。地下食品樓層有各式韓國熟食、甜點與伴手禮，價格平實。免稅店在同棟樓，回程前採購超方便。</div>
         <div class="card-addr">📍 Jungang-daero, Busanjin-gu（西面站旁）</div>
+        <div class="transit-info">步行，西面站出口旁</div>
         <div class="card-footer">
           <span class="badge badge-free">✓ 免費入場</span>
           <span class="badge badge-tip">🧾 免稅店同棟</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.1573,129.0587&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
     </div>
@@ -791,15 +807,18 @@
       <div class="day-title">東部海岸 × 海味之旅</div>
       <div class="day-subtitle">海崖佛寺、長腳蟹市場、斜坡滑車，晚上廣安大橋燈光秀收尾</div>
     </div>
+    <div id="map-day2" class="map-container"></div>
     <div class="cards">
       <div class="card">
         <div class="card-icon">🛕</div>
         <div class="card-name">海東龍宮寺</div>
         <div class="card-desc">建在海蝕崖上的千年佛寺，浪花拍打岩石，香火與海景同框，是韓國極少見的海岸寺廟奇景。早晨人少光線絕美，是全釜山最值得拍的景點之一。建議上午第一站前往。</div>
         <div class="card-addr">📍 Haedong Yonggungsa Temple, 86 Yonggung-gil, Gijang-gun（機張郡）</div>
+        <div class="transit-info">地鐵2號線 西面→海雲台站，轉181號巴士（約70分鐘）</div>
         <div class="card-footer">
           <span class="badge badge-free">✓ 免費入場</span>
           <span class="badge badge-tip">🕖 早上 6 點開放</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.1862,129.2222&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
       <div class="card">
@@ -807,9 +826,11 @@
         <div class="card-name">機張市場 長腳蟹美食</div>
         <div class="card-desc">機張以長腳蟹（대게）聞名全韓，市場周邊海鮮餐廳競爭激烈，螃蟹肉質鮮甜，價格遠比市區實惠。螃蟹粥、生蝦蓋飯、辣炒螃蟹都值得一試，午餐在此解決最划算。</div>
         <div class="card-addr">📍 Gijang Market, 16 Eumnae-ro 104beon-gil, Gijang-gun（機張郡）</div>
+        <div class="transit-info">龍宮寺附近搭巴士 or 計程車（約15分鐘）</div>
         <div class="card-footer">
           <span class="badge badge-cheap">₩ 約 15,000–30,000</span>
           <span class="badge badge-tip">🦀 長腳蟹 / 生蝦蓋飯必點</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.2447,129.2129&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
       <div class="card">
@@ -817,9 +838,11 @@
         <div class="card-name">Skyline Luge 釜山斜坡滑車</div>
         <div class="card-desc">從山頂俯衝而下的重力滑車，全程可自行控速，沿途海景一覽無遺。纜車上山、滑車下山，刺激感十足，是東部海岸最熱門的戶外體驗活動。建議下午前往。</div>
         <div class="card-addr">📍 205 Gijanghaean-ro, Gijang-gun（機張海岸路 205）</div>
+        <div class="transit-info">機張市場搭計程車（約10分鐘）</div>
         <div class="card-footer">
           <span class="badge badge-paid">₩ 約 12,000–22,000（依圈數）</span>
           <span class="badge badge-tip">🎿 建議 2–3 圈</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.1854,129.2108&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
       <div class="card">
@@ -827,9 +850,11 @@
         <div class="card-name">廣安里海灘 × 廣安大橋燈光秀</div>
         <div class="card-desc">全長 7.4 公里的雙層大橋，夜間燈光秀每晚定時點亮，在廣安里海灘正對大橋欣賞是最佳免費視角。沿岸咖啡廳、小吃攤密布，魚板湯、炸物隨手可得。</div>
         <div class="card-addr">📍 水營區 廣安海濱路 219（廣安里海灘）</div>
+        <div class="transit-info">地鐵2號線 廣安站下車，步行5分鐘</div>
         <div class="card-footer">
           <span class="badge badge-free">✓ 免費欣賞</span>
           <span class="badge badge-tip">💡 晚 9 點後點燈最美</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.1531,129.1186&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
     </div>
@@ -852,15 +877,18 @@
       <div class="day-title">南部文化 × 海港風情</div>
       <div class="day-subtitle">彩色山坡聚落、韓國最大海鮮市場、南浦洞購物，夜晚海雲台摩天夜景</div>
     </div>
+    <div id="map-day3" class="map-container"></div>
     <div class="cards">
       <div class="card">
         <div class="card-icon">🎨</div>
         <div class="card-name">甘川洞文化村</div>
         <div class="card-desc">層疊山坡上的彩色小屋群，韓版聖托里尼。巷弄間藏著壁畫、裝置藝術與特色小店，自由漫步探索即可。地圖 ₩ 2,000 含紀念小禮物，物超所值。建議上午前往，人少光線好。</div>
         <div class="card-addr">📍 203 Gamnae 2-ro, Saha-gu（沙下區甘川洞）</div>
+        <div class="transit-info">地鐵1號線 西面→土城站，轉마을버스 사하 1-1號（約40分鐘）</div>
         <div class="card-footer">
           <span class="badge badge-free">✓ 散步免費</span>
           <span class="badge badge-cheap">🗺 地圖 ₩ 2,000（含小禮物）</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.0969,129.0108&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
       <div class="card">
@@ -868,9 +896,11 @@
         <div class="card-name">札嘎其市場</div>
         <div class="card-desc">韓國規模最大的海鮮市場，一樓是活魚攤販，二樓可加工代客料理。生章魚、帝王蟹、活蝦、海螺應有盡有，現買現吃最新鮮。生章魚入口彈牙鮮甜，是釜山必體驗的美食。</div>
         <div class="card-addr">📍 52 Jagalchihaean-ro, Jung-gu（中區札嘎其海岸路 52）</div>
+        <div class="transit-info">地鐵1號線 札嘎其站下車，步行1分鐘</div>
         <div class="card-footer">
           <span class="badge badge-cheap">₩ 依市價，加工費另計</span>
           <span class="badge badge-tip">🦑 生章魚必體驗</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.0970,129.0302&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
       <div class="card">
@@ -878,9 +908,11 @@
         <div class="card-name">南浦洞商圈 + 釜山塔</div>
         <div class="card-desc">南浦洞是釜山最熱鬧的老城區商圈，服飾、小吃、伴手禮林立。龍頭山公園登高可俯瞰港口與市景，釜山塔塔外打卡免費，塔內展望台視野絕佳。</div>
         <div class="card-addr">📍 37-55 Yongdusan-gil, Jung-gu（中區龍頭山路）</div>
+        <div class="transit-info">地鐵1號線 南浦站，步行至龍頭山公園</div>
         <div class="card-footer">
           <span class="badge badge-free">✓ 公園免費</span>
           <span class="badge badge-cheap">🗼 塔內展望 ₩ 8,000（可選）</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.0977,129.0322&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
       <div class="card">
@@ -888,9 +920,11 @@
         <div class="card-name">The Bay 101 摩天夜景</div>
         <div class="card-desc">海雲台遊艇碼頭旁的複合商場，夜晚可欣賞廣安大橋燈光秀與摩天大樓倒映海面的壯觀景色。戶外區域完全免費，坐在碼頭邊喝杯飲料看夜景是絕配。</div>
         <div class="card-addr">📍 海雲台區 東白島路 2（The Bay 101）</div>
+        <div class="transit-info">地鐵2號線 冬柏站下車，步行7分鐘</div>
         <div class="card-footer">
           <span class="badge badge-free">✓ 戶外區免費</span>
           <span class="badge badge-tip">🌃 晚 9 點後最美</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.1541,129.1314&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
     </div>
@@ -914,6 +948,7 @@
       <div class="day-title">慶州 × 千年古都一日遊</div>
       <div class="day-subtitle">從西面出發約 1.5 小時，走入新羅王朝的歷史現場</div>
     </div>
+    <div id="map-day4" class="map-container"></div>
     <div class="cards">
       <div class="card">
         <div class="card-icon">🚄</div>
@@ -930,9 +965,11 @@
         <div class="card-name">大陵苑（天馬塚）</div>
         <div class="card-desc">新羅王朝的古墳公園，23 座大型圓形陵墓在草地上壯觀排列，氣氛莊嚴靜謐。可進入天馬塚內部參觀出土文物，費用極低。清晨散步是最詩意的歷史旅行體驗。</div>
         <div class="card-addr">📍 慶州市 皇南洞 陵南路 9號（Daereungwon Ancient Tombs）</div>
+        <div class="transit-info">地鐵2號線 西面→沙上站，轉高速巴士到慶州（約1.5小時）</div>
         <div class="card-footer">
           <span class="badge badge-cheap">₩ 約 3,000</span>
           <span class="badge badge-tip">🌿 早晨光線最美</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.8352,129.2094&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
       <div class="card">
@@ -940,9 +977,11 @@
         <div class="card-name">瞻星台</div>
         <div class="card-desc">東亞現存最古老的天文觀測台，建於西元 7 世紀新羅善德女王時代，石砌圓柱體造型獨特優美。周圍草坪開闊，可搭配大陵苑步行前往，兩處相距不遠。</div>
         <div class="card-addr">📍 慶州市 仁旺洞 839-1（Cheomseongdae Observatory）</div>
+        <div class="transit-info">慶州市區租腳踏車或步行（大陵苑附近）</div>
         <div class="card-footer">
           <span class="badge badge-cheap">₩ 約 3,000</span>
           <span class="badge badge-tip">📸 造型獨特必拍</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.8347,129.2193&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
       <div class="card">
@@ -950,9 +989,11 @@
         <div class="card-name">皇理團路（황리단길）</div>
         <div class="card-desc">慶州版的「益善洞」，古民家改建的咖啡廳、小店沿著百年老街綿延。傳統韓屋外牆配上現代設計感，超出想像的美拍聖地。下午慢慢逛，回程前在此喝杯咖啡。</div>
         <div class="card-addr">📍 慶州市 皇南洞 一帶（황리단길 商圈）</div>
+        <div class="transit-info">步行，瞻星台旁</div>
         <div class="card-footer">
           <span class="badge badge-free">✓ 散步免費</span>
           <span class="badge badge-cheap">☕ 咖啡 ₩ 5,000–8,000</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.8392,129.2096&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
     </div>
@@ -975,15 +1016,18 @@
       <div class="day-title">海雲台漫步 × 悠閒採買 × 返程</div>
       <div class="day-subtitle">海岸小火車、高空觀景台，西面最後採買後搭機返家</div>
     </div>
+    <div id="map-day5" class="map-container"></div>
     <div class="cards">
       <div class="card">
         <div class="card-icon">🚂</div>
         <div class="card-name">海雲台藍線公園（海岸列車）</div>
         <div class="card-desc">沿廢棄鐵路改建的濱海公園，搭乘可愛的海岸小火車緊貼海岸行駛，車窗外是一望無際的東海美景。步道全線亦可步行免費漫遊，感受最純粹的釜山海岸風情。</div>
         <div class="card-addr">📍 13 Dalmaji-gil 62beon-gil, Haeundae-gu（海雲台區）</div>
+        <div class="transit-info">地鐵2號線 西面→美浦站，步行3分鐘</div>
         <div class="card-footer">
           <span class="badge badge-free">✓ 步道免費</span>
           <span class="badge badge-paid">🚂 海岸列車 ₩ 約 5,000</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.1579,129.1822&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
       <div class="card">
@@ -991,9 +1035,11 @@
         <div class="card-name">海雲台海灘 景觀午餐</div>
         <div class="card-desc">釜山最著名的白沙灘，綿延 1.8 公里，沿岸摩天大樓與海浪共存。在海灘邊的景觀餐廳用午餐，一邊眺望海景一邊回味五天旅程，是最完美的告別時光。</div>
         <div class="card-addr">📍 海雲台區 海雲台海濱路 264 沿線餐廳</div>
+        <div class="transit-info">地鐵2號線 海雲台站，步行5分鐘</div>
         <div class="card-footer">
           <span class="badge badge-free">✓ 海灘免費</span>
           <span class="badge badge-cheap">🍽️ 午餐 ₩ 15,000–30,000</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.1588,129.1603&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
       <div class="card">
@@ -1001,9 +1047,11 @@
         <div class="card-name">BUSAN X the SKY（可選）</div>
         <div class="card-desc">海雲台 LCT 大樓 98–100 樓，釜山最高觀景台，可 360° 俯瞰整個海雲台、廣安大橋與市區全景。若航班是傍晚後，可在此享受日落與夜景，CP 值極高。視班機時間決定是否前往。</div>
         <div class="card-addr">📍 30 Dalmaji-gil, Haeundae-gu（LCT The Sharp 大樓）</div>
+        <div class="transit-info">地鐵2號線 冬柏站，步行10分鐘</div>
         <div class="card-footer">
           <span class="badge badge-paid">₩ 約 27,000</span>
           <span class="badge badge-tip">🌇 日落時段入場最值</span>
+          <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.1631,129.1634&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
       </div>
       <div class="card">
@@ -1252,12 +1300,109 @@
 
         // Scroll active tab into view on mobile
         btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+        // Invalidate Leaflet map size after tab becomes visible
+        if (window._leafletMaps && window._leafletMaps[day]) {
+          setTimeout(function () {
+            window._leafletMaps[day].invalidateSize();
+          }, 50);
+        }
       });
     });
   })();
 
+  /* ── Leaflet Maps ── */
+  function initMaps() {
+    if (typeof L === 'undefined') return;
+
+    var DARK_TILES = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+    var TILE_ATTR  = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+    var HOTEL = [35.1581, 129.0589];
+
+    window._leafletMaps = {};
+
+    function hotelIcon() {
+      return L.divIcon({ html: '<div style="font-size:1.4rem;line-height:1;">⭐</div>', className: '', iconAnchor: [12, 12] });
+    }
+    function spotIcon() {
+      return L.divIcon({ html: '<div style="font-size:1.2rem;line-height:1;">📍</div>', className: '', iconAnchor: [10, 20] });
+    }
+
+    function makeMap(id, spots, opts) {
+      var el = document.getElementById(id);
+      if (!el) return null;
+      var map = L.map(id, { zoomControl: true, scrollWheelZoom: false });
+      L.tileLayer(DARK_TILES, { attribution: TILE_ATTR, maxZoom: 19 }).addTo(map);
+
+      var bounds = [];
+      // Hotel marker
+      L.marker(HOTEL, { icon: hotelIcon() }).addTo(map)
+        .bindPopup('<strong>⭐ Gem Stay Seomyeon</strong><br>出發基地');
+      bounds.push(HOTEL);
+
+      spots.forEach(function (s) {
+        L.marker(s.latlng, { icon: spotIcon() }).addTo(map)
+          .bindPopup('<strong>' + s.name + '</strong><br><span style="font-size:0.8rem;opacity:0.8;">' + s.transit + '</span>');
+        bounds.push(s.latlng);
+      });
+
+      if (opts && opts.center) {
+        map.setView(opts.center, opts.zoom || 13);
+      } else {
+        map.fitBounds(bounds, { padding: [30, 30] });
+      }
+      return map;
+    }
+
+    // Day 1 – 西面周邊
+    window._leafletMaps['1'] = makeMap('map-day1', [
+      { latlng: [35.1617, 129.0503], name: '田浦咖啡街',       transit: '地鐵2號線 西面→田浦站（1站，2分鐘）' },
+      { latlng: [35.1575, 129.0591], name: '西面地下街',       transit: '步行，西面站地下即達' },
+      { latlng: [35.1573, 129.0587], name: '樂天百貨釜山總店', transit: '步行，西面站出口旁' }
+    ]);
+
+    // Day 2 – 東部海岸
+    window._leafletMaps['2'] = makeMap('map-day2', [
+      { latlng: [35.1862, 129.2222], name: '海東龍宮寺',          transit: '地鐵2號線 西面→海雲台站，轉181號巴士（約70分鐘）' },
+      { latlng: [35.2447, 129.2129], name: '機張市場',            transit: '龍宮寺附近搭巴士 or 計程車（約15分鐘）' },
+      { latlng: [35.1854, 129.2108], name: 'Skyline Luge 釜山',  transit: '機張市場搭計程車（約10分鐘）' },
+      { latlng: [35.1531, 129.1186], name: '廣安里海灘',          transit: '地鐵2號線 廣安站下車，步行5分鐘' }
+    ]);
+
+    // Day 3 – 南部文化
+    window._leafletMaps['3'] = makeMap('map-day3', [
+      { latlng: [35.0969, 129.0108], name: '甘川洞文化村',   transit: '地鐵1號線 西面→土城站，轉마을버스 사하 1-1號（約40分鐘）' },
+      { latlng: [35.0970, 129.0302], name: '札嘎其市場',     transit: '地鐵1號線 札嘎其站下車，步行1分鐘' },
+      { latlng: [35.0977, 129.0322], name: '南浦洞 + 釜山塔', transit: '地鐵1號線 南浦站，步行至龍頭山公園' },
+      { latlng: [35.1541, 129.1314], name: 'The Bay 101',   transit: '地鐵2號線 冬柏站下車，步行7分鐘' }
+    ]);
+
+    // Day 4 – 慶州（center 在慶州）
+    window._leafletMaps['4'] = makeMap('map-day4', [
+      { latlng: [35.8352, 129.2094], name: '大陵苑',   transit: '地鐵2號線 西面→沙上站，轉高速巴士到慶州（約1.5小時）' },
+      { latlng: [35.8347, 129.2193], name: '瞻星台',   transit: '慶州市區租腳踏車或步行（大陵苑附近）' },
+      { latlng: [35.8392, 129.2096], name: '皇理團路', transit: '步行，瞻星台旁' }
+    ], { center: [35.8370, 129.2130], zoom: 13 });
+
+    // Day 5 – 海雲台
+    window._leafletMaps['5'] = makeMap('map-day5', [
+      { latlng: [35.1579, 129.1822], name: '海雲台藍線公園',  transit: '地鐵2號線 西面→美浦站，步行3分鐘' },
+      { latlng: [35.1588, 129.1603], name: '海雲台海灘',      transit: '地鐵2號線 海雲台站，步行5分鐘' },
+      { latlng: [35.1631, 129.1634], name: 'BUSAN X the SKY', transit: '地鐵2號線 冬柏站，步行10分鐘' }
+    ]);
+  }
+
   // Auto-fetch weather on load
   fetchWeather();
+
+  // Init maps after DOM ready
+  document.addEventListener('DOMContentLoaded', function () {
+    initMaps();
+  });
+  // Also try immediately in case DOMContentLoaded already fired
+  if (document.readyState !== 'loading') {
+    initMaps();
+  }
 </script>
 
 </body>

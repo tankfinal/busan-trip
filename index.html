@@ -612,6 +612,53 @@
       .tab-btn { padding: 7px 14px; font-size: 0.78rem; }
       .accom-card { flex-direction: column; gap: 10px; }
     }
+    /* ────── Weather Timeline ────── */
+    .weather-section {
+      margin-bottom: 20px;
+    }
+    .weather-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .weather-timeline {
+      overflow-x: auto;
+      display: flex;
+      gap: 6px;
+      padding: 12px 0 8px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.2) transparent;
+    }
+    .weather-timeline::-webkit-scrollbar { height: 4px; }
+    .weather-timeline::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+    .weather-hour {
+      flex: 0 0 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 6px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .weather-hour.current {
+      border-color: var(--accent);
+      background: rgba(255,107,107,0.12);
+      color: var(--text-primary);
+      transform: scale(1.05);
+    }
+    .weather-hour .wh-time { font-size: 0.7rem; color: var(--text-muted); }
+    .weather-hour .wh-icon { font-size: 1.4rem; }
+    .weather-hour .wh-temp { font-weight: 600; color: var(--text-primary); }
+    .weather-hour .wh-precip { font-size: 0.68rem; color: #4ecdc4; }
+
   </style>
 </head>
 <body>
@@ -1211,7 +1258,7 @@
   function fetchWeather() {
     var API_URL = 'https://api.open-meteo.com/v1/forecast'
       + '?latitude=35.1796&longitude=129.0756'
-      + '&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max'
+      + '&hourly=temperature_2m,weathercode,precipitation_probability'
       + '&timezone=Asia%2FSeoul&start_date=2026-03-31&end_date=2026-04-04';
 
     function wmoEmoji(code) {
@@ -1225,50 +1272,88 @@
       return '🌤️';
     }
 
-    function buildBanner(emoji, max, min, precip) {
-      return '<div class="weather-banner">'
-        + '<span class="weather-icon">' + emoji + '</span>'
-        + '<div class="weather-info">'
-        + '<div class="weather-temp">'
-        + '<span class="temp-high">' + max + '°C</span>'
-        + '<span class="temp-low">' + min + '°C</span>'
-        + '</div>'
-        + '<div class="weather-detail">降雨機率 ' + precip + '% · 即時預報</div>'
-        + '</div>'
-        + '<div class="weather-label">釜山天氣</div>'
+    function buildTimeline(hours, nowHour, dayIndex) {
+      // nowHour is local hour (0-23); highlight only on the day that matches today
+      var html = '<div class="weather-section">'
+        + '<div class="weather-title">🌤 釜山逐時天氣</div>'
+        + '<div class="weather-timeline" id="timeline-' + dayIndex + '">';
+      for (var h = 0; h < hours.length; h++) {
+        var entry = hours[h];
+        var isCurrent = (nowHour === entry.hour);
+        html += '<div class="weather-hour' + (isCurrent ? ' current' : '') + '"'
+          + (isCurrent ? ' id="current-hour-' + dayIndex + '"' : '') + '>'
+          + '<span class="wh-time">' + pad(entry.hour) + ':00</span>'
+          + '<span class="wh-icon">' + entry.emoji + '</span>'
+          + '<span class="wh-temp">' + entry.temp + '°</span>'
+          + (entry.precip > 20 ? '<span class="wh-precip">' + entry.precip + '%</span>' : '')
+          + '</div>';
+      }
+      html += '</div></div>';
+      return html;
+    }
+
+    function fallbackTimeline() {
+      return '<div class="weather-section">'
+        + '<div class="weather-title">🌤 釜山逐時天氣</div>'
+        + '<div class="weather-timeline"><span style="color:var(--text-muted);font-size:0.8rem;padding:12px 0">天氣資料載入中...</span></div>'
         + '</div>';
     }
 
-    function fallbackBanner() {
-      return '<div class="weather-banner">'
-        + '<span class="weather-icon">🌤️</span>'
-        + '<div class="weather-info">'
-        + '<div class="weather-detail">天氣資料載入中...</div>'
-        + '</div>'
-        + '<div class="weather-label">釜山天氣</div>'
-        + '</div>';
-    }
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    // Dates for each panel (day 1 = 3/31, day 5 = 4/4)
+    var DATES = ['2026-03-31','2026-04-01','2026-04-02','2026-04-03','2026-04-04'];
 
     fetch(API_URL)
       .then(function(res) { return res.json(); })
       .then(function(data) {
-        var daily = data.daily;
-        for (var i = 0; i < 5; i++) {
-          var panel = document.getElementById('panel-' + (i + 1));
+        var hourly = data.hourly;
+        // Group 120 entries by date
+        var byDate = {};
+        for (var i = 0; i < hourly.time.length; i++) {
+          var t = hourly.time[i]; // e.g. "2026-03-31T14:00"
+          var datePart = t.slice(0, 10);
+          var hourNum  = parseInt(t.slice(11, 13), 10);
+          if (!byDate[datePart]) byDate[datePart] = [];
+          byDate[datePart].push({
+            hour:   hourNum,
+            emoji:  wmoEmoji(hourly.weathercode[i]),
+            temp:   Math.round(hourly.temperature_2m[i]),
+            precip: hourly.precipitation_probability[i] !== null ? hourly.precipitation_probability[i] : 0
+          });
+        }
+
+        // Determine current local hour (Seoul = UTC+9)
+        var nowUTC  = new Date();
+        var nowSeoul = new Date(nowUTC.getTime() + 9 * 3600 * 1000);
+        var todayStr = nowSeoul.toISOString().slice(0, 10);
+        var nowHour  = nowSeoul.getUTCHours();
+
+        for (var d = 0; d < 5; d++) {
+          var panel = document.getElementById('panel-' + (d + 1));
           if (!panel) continue;
-          var emoji  = wmoEmoji(daily.weathercode[i]);
-          var max    = Math.round(daily.temperature_2m_max[i]);
-          var min    = Math.round(daily.temperature_2m_min[i]);
-          var precip = daily.precipitation_probability_max[i] !== null
-                       ? daily.precipitation_probability_max[i] : 0;
-          var banner = buildBanner(emoji, max, min, precip);
-          panel.insertAdjacentHTML('afterbegin', banner);
+          var dateStr = DATES[d];
+          var hours   = byDate[dateStr] || [];
+          var isToday = (dateStr === todayStr);
+          var html    = buildTimeline(hours, isToday ? nowHour : -1, d + 1);
+          panel.insertAdjacentHTML('afterbegin', html);
+        }
+
+        // Scroll current hour into view for today's panel (if visible)
+        var todayIdx = DATES.indexOf(todayStr);
+        if (todayIdx !== -1) {
+          var curEl = document.getElementById('current-hour-' + (todayIdx + 1));
+          if (curEl) {
+            setTimeout(function() {
+              curEl.scrollIntoView({ inline: 'center', behavior: 'smooth', block: 'nearest' });
+            }, 300);
+          }
         }
       })
       .catch(function() {
         for (var i = 1; i <= 5; i++) {
           var panel = document.getElementById('panel-' + i);
-          if (panel) panel.insertAdjacentHTML('afterbegin', fallbackBanner());
+          if (panel) panel.insertAdjacentHTML('afterbegin', fallbackTimeline());
         }
       });
   }

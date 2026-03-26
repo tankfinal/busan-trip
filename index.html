@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>五天釜山旅遊清單</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0e1a;
+      --bg-2: #0f1425;
+      --accent: #ff6b6b;
+      --accent-glow: rgba(255, 107, 107, 0.35);
+      --accent-2: #4ecdc4;
+      --glass-bg: rgba(255,255,255,0.06);
+      --glass-border: rgba(255,255,255,0.12);
+      --glass-hover: rgba(255,255,255,0.10);
+      --text-primary: rgba(255,255,255,0.92);
+      --text-secondary: rgba(255,255,255,0.58);
+      --text-muted: rgba(255,255,255,0.38);
+      --badge-free-bg: rgba(46, 213, 115, 0.15);
+      --badge-free-color: #2ed573;
+      --badge-free-border: rgba(46, 213, 115, 0.3);
+      --badge-cheap-bg: rgba(255, 165, 2, 0.15);
+      --badge-cheap-color: #ffa502;
+      --badge-cheap-border: rgba(255, 165, 2, 0.3);
+      --badge-paid-bg: rgba(255, 107, 107, 0.15);
+      --badge-paid-color: #ff6b6b;
+      --badge-paid-border: rgba(255, 107, 107, 0.3);
+      --badge-tip-bg: rgba(78, 205, 196, 0.12);
+      --badge-tip-color: #4ecdc4;
+      --badge-tip-border: rgba(78, 205, 196, 0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ────── Hero ────── */
+    .hero {
+      position: relative;
+      background: linear-gradient(160deg, #06091a 0%, #0d1b3e 40%, #0a2a5e 70%, #0d3b66 100%);
+      text-align: center;
+      padding: 90px 24px 140px;
+      overflow: hidden;
+    }
+    .hero-bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.25;
+      pointer-events: none;
+    }
+    .hero-bg-orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #1a6fa8, transparent);
+      top: -100px; left: -100px;
+    }
+    .hero-bg-orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #ff6b6b, transparent);
+      top: -50px; right: -50px;
+      opacity: 0.12;
+    }
+    .hero-bg-orb-3 {
+      width: 600px; height: 300px;
+      background: radial-gradient(circle, #4ecdc4, transparent);
+      bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.1;
+    }
+    /* SVG Wave bottom */
+    .hero-wave {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      pointer-events: none;
+    }
+
+    .hero-emoji {
+      font-size: 3.8rem;
+      display: block;
+      margin-bottom: 16px;
+      animation: float 5s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-12px); }
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-shadow: 0 0 40px rgba(255,255,255,0.15);
+      position: relative; z-index: 1;
+      background: linear-gradient(135deg, #ffffff 0%, #a8d8f0 60%, #4ecdc4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      margin-top: 10px;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.1em;
+      font-weight: 300;
+      position: relative; z-index: 1;
+    }
+    .hero-tags {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      position: relative; z-index: 1;
+    }
+    .hero-tag {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 99px;
+      padding: 5px 16px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      backdrop-filter: blur(8px);
+      letter-spacing: 0.04em;
+    }
+
+    /* ────── Layout ────── */
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* ────── Transport Cards (Hero 下方) ────── */
+    .transport-section {
+      margin-top: -40px;
+      position: relative;
+      z-index: 10;
+      margin-bottom: 40px;
+    }
+    .transport-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .transport-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 20px 22px;
+    }
+    .transport-card-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-2);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .transport-card-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ────── Accommodation (固定顯示) ────── */
+    .accom-section {
+      margin-bottom: 40px;
+    }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .accom-card {
+      background: linear-gradient(135deg, rgba(26, 107, 168, 0.2), rgba(78, 205, 196, 0.1));
+      border: 1px solid rgba(78, 205, 196, 0.2);
+      border-radius: 16px;
+      padding: 22px 26px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .accom-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .accom-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .accom-detail {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.9;
+    }
+    .accom-detail strong { color: var(--accent-2); font-weight: 600; }
+
+    /* ────── Tab Bar ────── */
+    .tab-bar-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 12px 0;
+      background: rgba(10, 14, 26, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin: 0 -20px 32px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .tab-bar {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 2px;
+    }
+    .tab-bar::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex-shrink: 0;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      position: relative;
+      transition: all 0.22s ease;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 60%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 99px;
+      transition: transform 0.22s ease;
+    }
+    .tab-btn:hover {
+      background: rgba(255,255,255,0.07);
+      color: var(--text-primary);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .tab-btn.active {
+      background: rgba(255, 107, 107, 0.12);
+      border-color: rgba(255, 107, 107, 0.4);
+      color: #fff;
+    }
+    .tab-btn.active::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+    .tab-day-num {
+      display: block;
+      font-size: 0.62rem;
+      font-weight: 400;
+      opacity: 0.6;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1px;
+    }
+
+    /* ────── Day Panels ────── */
+    .day-panel { display: none; }
+    .day-panel.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ────── Day Header ────── */
+    .day-header {
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .day-num-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .day-num-badge::before {
+      content: '';
+      width: 18px; height: 2px;
+      background: var(--accent);
+      border-radius: 99px;
+      display: inline-block;
+    }
+    .day-title {
+      font-size: clamp(1.15rem, 3vw, 1.5rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: 0.01em;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .day-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* ────── Cards Grid ────── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    /* ────── Card ────── */
+    .card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 22px 20px;
+      transition: transform 0.24s ease, box-shadow 0.24s ease, background 0.24s ease, border-color 0.24s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--card-accent, linear-gradient(90deg, #ff6b6b, #ffa502));
+      opacity: 0.7;
+      border-radius: 16px 16px 0 0;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1), var(--card-glow, 0 0 20px rgba(255,107,107,0.12));
+      background: var(--glass-hover);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    /* Day color accents */
+    .day-1 .card { --card-accent: linear-gradient(90deg, #4db8e8, #1a6fa8); --card-glow: 0 0 24px rgba(77,184,232,0.15); }
+    .day-2 .card { --card-accent: linear-gradient(90deg, #27ae60, #2ed573); --card-glow: 0 0 24px rgba(46,213,115,0.12); }
+    .day-3 .card { --card-accent: linear-gradient(90deg, #8e44ad, #a855f7); --card-glow: 0 0 24px rgba(168,85,247,0.12); }
+    .day-4 .card { --card-accent: linear-gradient(90deg, #ff6b6b, #e74c3c); --card-glow: 0 0 24px rgba(231,76,60,0.15); }
+    .day-5 .card { --card-accent: linear-gradient(90deg, #f4a226, #ffd32a); --card-glow: 0 0 24px rgba(244,162,38,0.15); }
+
+    .card-icon { font-size: 1.7rem; margin-bottom: 10px; }
+    .card-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+    .card-addr {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    /* ────── Badges ────── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border-radius: 99px;
+      padding: 3px 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .badge-free {
+      background: var(--badge-free-bg);
+      color: var(--badge-free-color);
+      border: 1px solid var(--badge-free-border);
+    }
+    .badge-cheap {
+      background: var(--badge-cheap-bg);
+      color: var(--badge-cheap-color);
+      border: 1px solid var(--badge-cheap-border);
+    }
+    .badge-paid {
+      background: var(--badge-paid-bg);
+      color: var(--badge-paid-color);
+      border: 1px solid var(--badge-paid-border);
+    }
+    .badge-tip {
+      background: var(--badge-tip-bg);
+      color: var(--badge-tip-color);
+      border: 1px solid var(--badge-tip-border);
+      font-weight: 500;
+    }
+
+    /* ────── Tips Bar ────── */
+    .tips-section {
+      margin-top: 40px;
+    }
+    .tips-card {
+      background: linear-gradient(135deg, rgba(255,107,107,0.08), rgba(78,205,196,0.06));
+      border: 1px solid rgba(255,107,107,0.2);
+      border-radius: 16px;
+      padding: 24px 26px;
+      backdrop-filter: blur(12px);
+    }
+    .tips-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tips-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+    }
+    .tips-list li {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+    .tips-list li::before {
+      content: '→';
+      flex-shrink: 0;
+      color: var(--accent);
+      opacity: 0.8;
+      font-weight: 700;
+    }
+
+    /* ────── Footer ────── */
+    footer {
+      text-align: center;
+      padding: 36px 20px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      letter-spacing: 0.06em;
+    }
+
+    /* ────── Scrollbar ────── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+
+    /* ────── RWD ────── */
+    @media (max-width: 600px) {
+      .hero { padding: 60px 16px 120px; }
+      .transport-grid { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr; }
+      .tips-list { grid-template-columns: 1fr; }
+      .tab-btn { padding: 7px 14px; font-size: 0.78rem; }
+      .accom-card { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Hero ── -->
+<header class="hero">
+  <div class="hero-bg-orb hero-bg-orb-1"></div>
+  <div class="hero-bg-orb hero-bg-orb-2"></div>
+  <div class="hero-bg-orb hero-bg-orb-3"></div>
+
+  <span class="hero-emoji">🌊</span>
+  <h1>五天釜山旅遊清單</h1>
+  <p class="hero-sub">2026 · Busan, Korea · 海景優先 · 省錢玩透透</p>
+  <div class="hero-tags">
+    <span class="hero-tag">🗓 5 Days</span>
+    <span class="hero-tag">🇰🇷 Busan</span>
+    <span class="hero-tag">💙 海景優先</span>
+    <span class="hero-tag">💰 免費 / 低消費</span>
+    <span class="hero-tag">🏠 西面站基地</span>
+  </div>
+
+  <!-- SVG Wave -->
+  <svg class="hero-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+    <path fill="#0a0e1a" fill-opacity="1" d="M0,40 C200,80 400,0 600,35 C800,70 1000,10 1200,40 C1320,58 1380,30 1440,20 L1440,80 L0,80 Z"/>
+    <path fill="#0a0e1a" fill-opacity="0.5" d="M0,60 C300,20 600,80 900,50 C1100,30 1300,65 1440,45 L1440,80 L0,80 Z"/>
+  </svg>
+</header>
+
+<main class="container">
+
+  <!-- ── 交通資訊（固定顯示，Hero 下方） ── -->
+  <section class="transport-section">
+    <div class="section-label">✈️ 機場 → 西面站 交通方式</div>
+    <div class="transport-grid">
+      <div class="transport-card">
+        <div class="transport-card-title">🚇 捷運（推薦）</div>
+        <div class="transport-card-desc">金海機場輕軌「機場站」→「沙上站」，轉地鐵 2 號線至「219 西面站」。全程約 26 分鐘，費用低廉，T-money 卡可直接搭乘。</div>
+      </div>
+      <div class="transport-card">
+        <div class="transport-card-title">🚌 機場木津巴士 2 號</div>
+        <div class="transport-card-desc">成人票價 6,000 韓元，單程約 50 分鐘，直達西面站（樂天酒店百貨）。行李多時較方便，但遇塞車時間不穩定。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 住宿基地（固定顯示，不隨頁籤切換） ── -->
+  <section class="accom-section">
+    <div class="section-label">🏠 住宿基地</div>
+    <div class="accom-card">
+      <div class="accom-icon">🏨</div>
+      <div>
+        <div class="accom-title">西面站住宿基地</div>
+        <div class="accom-detail">
+          <strong>地址：</strong>#204, 752, Jungang-daero, Busanjin-gu, 釜山鎮區<br>
+          <strong>地鐵：</strong>2 號線「219 西面站」步行可達，交通極便利<br>
+          <strong>周邊：</strong>西面地下街、樂天百貨、田浦咖啡街、多家便利商店與餐廳<br>
+          <strong>優勢：</strong>釜山交通核心，前往海雲台、廣安里、南浦洞均可直達，是五天行程最佳基地
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Tab Bar ── -->
+  <div class="tab-bar-wrapper">
+    <div class="tab-bar" role="tablist" aria-label="行程日期">
+      <button class="tab-btn active" role="tab" aria-selected="true"  aria-controls="panel-1" data-day="1">
+        <span class="tab-day-num">Day</span>01 抵達釜山
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-2" data-day="2">
+        <span class="tab-day-num">Day</span>02 最東路線
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-3" data-day="3">
+        <span class="tab-day-num">Day</span>03 海雲台
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-4" data-day="4">
+        <span class="tab-day-num">Day</span>04 廣安里
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-5" data-day="5">
+        <span class="tab-day-num">Day</span>05 慶州返程
+      </button>
+    </div>
+  </div>
+
+  <!-- ══ Day 1 Panel ══ -->
+  <div id="panel-1" class="day-panel day-1 active" role="tabpanel">
+    <div class="day-header">
+      <div class="day-num-badge">Day 01</div>
+      <div class="day-title">抵達釜山 × 西面商圈 / 南浦洞 / 釜山塔</div>
+      <div class="day-subtitle">安頓後在住宿附近走走，感受西面與南浦洞的城市脈動</div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🏙️</div>
+        <div class="card-name">西面商圈</div>
+        <div class="card-desc">釜山最繁華的商業中心，地下街延伸數百公尺，美妝、服飾、小吃應有盡有。逛街不消費完全沒壓力，是認識釜山現代面的最佳入口。</div>
+        <div class="card-addr">📍 西面地下街 / 釜山鎮區</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 免費逛街</span>
+          <span class="badge badge-tip">🛍 西面地下街必逛</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏬</div>
+        <div class="card-name">樂天百貨釜山總店</div>
+        <div class="card-desc">亞洲最大樂天百貨之一，地下食品樓層有各式韓國熟食、甜點，價格平實。就算不買東西，逛逛吹冷氣也值得。</div>
+        <div class="card-addr">📍 Jungang-daero, Busanjin-gu（西面站旁）</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 免費入場</span>
+          <span class="badge badge-cheap">🍱 地下美食 ₩ 4,000 起</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">☕</div>
+        <div class="card-name">田浦咖啡街</div>
+        <div class="card-desc">釜山最有名的咖啡一條街，數十家個性咖啡廳林立，建築風格各異，隨便走進一家都有好拍的角落。傍晚燈光亮起更有氣氛。</div>
+        <div class="card-addr">📍 田浦洞，地鐵 2 號線田浦站附近</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">☕ 咖啡 ₩ 4,000–7,000</span>
+          <span class="badge badge-tip">📸 打卡熱點</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🗼</div>
+        <div class="card-name">釜山塔 &amp; 龍頭山公園</div>
+        <div class="card-desc">龍頭山公園登高俯瞰南浦洞港口與釜山市景，完全免費。塔外打卡也很好拍，內部展望台可視預算選擇。夜晚燈火璀璨。</div>
+        <div class="card-addr">📍 龍頭山路 37-55，中區</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 公園免費</span>
+          <span class="badge badge-cheap">🗼 塔內 ₩ 8,000（可選）</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🫕</div>
+        <div class="card-name">南浦洞 豬肉湯飯</div>
+        <div class="card-desc">釜山名物「돼지국밥」，一碗滷豬肉湯飯香濃暖胃，是在地人的日常料理。南浦洞一帶老字號多，價格親民，第一晚必吃。</div>
+        <div class="card-addr">📍 南浦洞一帶多家老店</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">₩ 約 8,000–10,000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Day 2 Panel ══ -->
+  <div id="panel-2" class="day-panel day-2" role="tabpanel">
+    <div class="day-header">
+      <div class="day-num-badge">Day 02</div>
+      <div class="day-title">最東路線 — Skyline Luge + 海東龍宮寺 + 機張市場</div>
+      <div class="day-subtitle">刺激滑車、海崖佛寺、新鮮螃蟹，一天衝完東部精華</div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🛷</div>
+        <div class="card-name">Skyline Luge 釜山斜坡滑車</div>
+        <div class="card-desc">從山頂俯衝而下的重力滑車，全程可自行控速，沿途海景一覽無遺。刺激感十足，是東部最熱門的戶外活動，建議早點去避開人潮。</div>
+        <div class="card-addr">📍 釜山廣域市機張郡松亭里</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">₩ 約 12,000–18,000（依圈數）</span>
+          <span class="badge badge-tip">🎿 建議 2–3 圈</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛕</div>
+        <div class="card-name">海東龍宮寺</div>
+        <div class="card-desc">建在海蝕崖上的千年佛寺，浪花拍打岩石，香火與海景同框，是韓國少見的海岸寺廟奇景。早晨人少光線美，是全釜山最值得拍的景點之一。</div>
+        <div class="card-addr">📍 機張郡東面龍宮吉86</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 免費入場</span>
+          <span class="badge badge-tip">🕖 早上 6 點開放</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🦞</div>
+        <div class="card-name">機張市場 螃蟹街</div>
+        <div class="card-desc">機張以活蟹聞名全韓，市場周邊海鮮餐廳競爭激烈，價格比市區便宜許多。螃蟹粥、生蝦蓋飯、辣炒螃蟹都值得一試，午餐在此解決最划算。</div>
+        <div class="card-addr">📍 機張郡機張邑機張市場路</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">₩ 約 15,000–25,000</span>
+          <span class="badge badge-tip">🦀 生蝦蓋飯必點</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Day 3 Panel ══ -->
+  <div id="panel-3" class="day-panel day-3" role="tabpanel">
+    <div class="day-header">
+      <div class="day-num-badge">Day 03</div>
+      <div class="day-title">東邊路線 — 海雲台藍線公園 + BUSAN X the SKY + The Bay 101 夜景</div>
+      <div class="day-subtitle">海濱小火車、釜山最高觀景台、夜晚海灣燈光倒影</div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🚂</div>
+        <div class="card-name">海雲台藍線公園（海岸列車）</div>
+        <div class="card-desc">沿廢棄鐵路改建的濱海步道，小火車緊貼海岸行駛，車窗外是一望無際的藍色海景。步道全線也可步行，免費漫遊感受最純粹的海岸風情。</div>
+        <div class="card-addr">📍 海雲台區 中洞驛 ~ 松亭驛 沿線</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 步道免費</span>
+          <span class="badge badge-cheap">🚂 海岸列車 ₩ 5,000（可選）</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏖️</div>
+        <div class="card-name">海雲台海水浴場</div>
+        <div class="card-desc">釜山最著名的白沙灘，綿延 1.8 公里，沿岸摩天樓與海浪共存，視覺震撼。在此漫步、吹海風、吃路邊小吃，是最釜山的體驗。</div>
+        <div class="card-addr">📍 海雲台區 海雲台海濱路 264</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 免費入場</span>
+          <span class="badge badge-tip">🌅 黃昏最美</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌆</div>
+        <div class="card-name">BUSAN X the SKY</div>
+        <div class="card-desc">海雲台 LCT 大樓 98–100 樓，釜山最高觀景台，可 360° 俯瞰整個海雲台海灘、廣安大橋與市區全景。傍晚入場可同時看日落和夜景，CP 值最高。</div>
+        <div class="card-addr">📍 海雲台區 達迎路 30（LCT The Sharp 大樓）</div>
+        <div class="card-footer">
+          <span class="badge badge-paid">₩ 約 27,000</span>
+          <span class="badge badge-tip">🌇 傍晚入場最值</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌉</div>
+        <div class="card-name">The Bay 101 夜景</div>
+        <div class="card-desc">海雲台遊艇碼頭旁的複合商場，夜晚廣安大橋燈光倒映海面，氣氛極佳。戶外區域完全免費，坐在碼頭邊喝杯飲料看夜景是絕配。</div>
+        <div class="card-addr">📍 海雲台區 東白島路 2</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 戶外區免費</span>
+          <span class="badge badge-tip">🌃 晚 9 點後最美</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Day 4 Panel ══ -->
+  <div id="panel-4" class="day-panel day-4" role="tabpanel">
+    <div class="day-header">
+      <div class="day-num-badge">Day 04</div>
+      <div class="day-title">廣安里 + 甘川洞文化村 + 札嘎其市場</div>
+      <div class="day-subtitle">廣安大橋全景、山坡彩色聚落、釜山最大海鮮市場</div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🏖️</div>
+        <div class="card-name">廣安里海水浴場</div>
+        <div class="card-desc">以廣安大橋夜景聞名，白天海灘寬闊好拍，咖啡廳、小吃攤沿海密布。比海雲台少了一點觀光客，更有在地感。魚板湯、炸物隨手可得。</div>
+        <div class="card-addr">📍 水營區 廣安海濱路 219</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 海灘免費</span>
+          <span class="badge badge-cheap">🍢 路邊小吃 ₩ 1,000–2,000</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌉</div>
+        <div class="card-name">廣安大橋夜景</div>
+        <div class="card-desc">全長 7.4 公里的雙層大橋，夜間燈光秀每晚定時點燈，在廣安里海灘對著橋看是免費的最佳視角。晚上再來一次，白天和夜晚完全不同風貌。</div>
+        <div class="card-addr">📍 廣安里海灘沿岸均可觀賞</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 免費欣賞</span>
+          <span class="badge badge-tip">💡 晚 9 點後點燈</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <div class="card-name">甘川洞文化村</div>
+        <div class="card-desc">層疊山坡上的彩色小屋群，韓版聖托里尼。巷弄間藏著壁畫、裝置藝術與特色小店，自由漫步探索即可。地圖 2,000 韓元含紀念小禮物，物超所值。</div>
+        <div class="card-addr">📍 沙下區 甘川洞 10-33</div>
+        <div class="card-footer">
+          <span class="badge badge-free">✓ 散步免費</span>
+          <span class="badge badge-cheap">🗺 地圖 ₩ 2,000（含小禮物）</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🐟</div>
+        <div class="card-name">札嘎其市場</div>
+        <div class="card-desc">韓國規模最大的海鮮市場，一樓是活魚攤販，二樓可加工代客料理。生章魚、活蝦、海螺應有盡有，現買現吃最新鮮，是釜山海鮮體驗最集中的地方。</div>
+        <div class="card-addr">📍 中區 札嘎其海岸路 52</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">₩ 海鮮依市價，加工費另計</span>
+          <span class="badge badge-tip">🦑 生章魚必體驗</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Day 5 Panel ══ -->
+  <div id="panel-5" class="day-panel day-5" role="tabpanel">
+    <div class="day-header">
+      <div class="day-num-badge">Day 05</div>
+      <div class="day-title">慶州一日遊 + 返程</div>
+      <div class="day-subtitle">千年古都探訪，傍晚回釜山搭車返家</div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🏛️</div>
+        <div class="card-name">慶州 大陵苑（天馬塚）</div>
+        <div class="card-desc">新羅王朝的古墳公園，23 座大型圓形陵墓在草地上排列，氣氛莊嚴靜謐。可進入天馬塚內部參觀，費用極低。清晨散步是最詩意的旅行體驗。</div>
+        <div class="card-addr">📍 慶州市 皇南洞 陵南路 9號</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">₩ 約 3,000</span>
+          <span class="badge badge-tip">🌿 早晨最安靜</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏯</div>
+        <div class="card-name">慶州 瞻星台</div>
+        <div class="card-desc">東亞現存最古老的天文台，建於西元 7 世紀，造型獨特優美。周圍草坪開闊，可搭配大陵苑步行遊覽，兩處相距不遠。</div>
+        <div class="card-addr">📍 慶州市 仁旺洞 839-1</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">₩ 約 3,000</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">⛩️</div>
+        <div class="card-name">慶州 佛國寺</div>
+        <div class="card-desc">聯合國世界遺產，新羅時代佛教建築的最高傑作。石橋、石塔、大雄殿層層遞進，氣勢恢宏。門票便宜，是慶州最值得入場的景點。</div>
+        <div class="card-addr">📍 慶州市 佛國路 385</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">₩ 6,000</span>
+          <span class="badge badge-tip">🌸 石窟庵可搭配同遊</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚄</div>
+        <div class="card-name">慶州 → 釜山 → 返程</div>
+        <div class="card-desc">慶州到釜山搭 ITX 新村號或 KTX 約 40 分鐘，班次密集。傍晚回到釜山後可在西面商圈做最後採購，然後從釜山機場搭機返回。</div>
+        <div class="card-addr">📍 慶州驛 → 釜山驛</div>
+        <div class="card-footer">
+          <span class="badge badge-cheap">🚄 火車 ₩ 約 4,800–14,000</span>
+          <span class="badge badge-tip">⏱ 車程約 40 分鐘</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 省錢提醒 ── -->
+  <section class="tips-section">
+    <div class="tips-card">
+      <div class="tips-title">💡 省錢旅行小提醒</div>
+      <ul class="tips-list">
+        <li>交通用 T-money 卡，地鐵公車通用，比買單程票省</li>
+        <li>景點多為免費，把預算留給海鮮美食</li>
+        <li>超市（GS25 / CU）買早餐，省時省錢</li>
+        <li>慶州一日遊搭 KTX 最快，提早訂票更便宜</li>
+        <li>海雲台藍線公園步道全程免費，不搭小火車也好走</li>
+        <li>魚板（어묵）是釜山必吃，路邊攤最便宜正宗</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  🌊 Made with love for Busan &nbsp;·&nbsp; 釜山五日遊 &nbsp;·&nbsp; 海景優先 &nbsp;·&nbsp; 省錢第一
+</footer>
+
+<script>
+  (function () {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.day-panel');
+
+    tabs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const day = btn.getAttribute('data-day');
+
+        // Update tabs
+        tabs.forEach(function (t) {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        // Update panels
+        panels.forEach(function (p) {
+          p.classList.remove('active');
+        });
+        var target = document.getElementById('panel-' + day);
+        if (target) {
+          target.classList.add('active');
+        }
+
+        // Scroll active tab into view on mobile
+        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -161,6 +161,204 @@
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
+
+    /* ────── Airport Step Card ────── */
+    .airport-steps-card {
+      margin-top: 14px;
+      background: linear-gradient(135deg, rgba(77,184,232,0.1), rgba(26,107,168,0.07));
+      border: 1px solid rgba(77,184,232,0.25);
+      border-radius: 16px;
+      padding: 22px 24px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .airport-steps-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #4db8e8;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .airport-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .airport-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .airport-step-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(77,184,232,0.2);
+      border: 1px solid rgba(77,184,232,0.4);
+      color: #4db8e8;
+      font-size: 0.75rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0;
+      margin-top: 1px;
+    }
+    .airport-step-text {
+      font-size: 0.79rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+    .airport-step-text strong { color: var(--text-primary); font-weight: 600; }
+    .airport-step-text em { color: #4db8e8; font-style: normal; font-weight: 600; }
+    .airport-steps-total {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(77,184,232,0.15);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .airport-steps-total strong { color: #4db8e8; }
+
+    /* ────── Money Exchange Card ────── */
+    .money-exchange-card {
+      margin-top: 14px;
+      background: linear-gradient(135deg, rgba(255,165,2,0.08), rgba(255,107,107,0.05));
+      border: 1px solid rgba(255,165,2,0.25);
+      border-radius: 16px;
+      padding: 20px 22px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .money-exchange-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #ffa502;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .money-exchange-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .money-exchange-list li {
+      font-size: 0.79rem;
+      color: var(--text-secondary);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.65;
+    }
+    .money-exchange-list li::before {
+      content: '→';
+      flex-shrink: 0;
+      color: #ffa502;
+      font-weight: 700;
+      opacity: 0.8;
+    }
+    .money-exchange-list strong { color: var(--text-primary); font-weight: 600; }
+    .money-exchange-warn {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: rgba(255,107,107,0.1);
+      border: 1px solid rgba(255,107,107,0.25);
+      border-radius: 8px;
+      font-size: 0.75rem;
+      color: #ff6b6b;
+    }
+
+    /* ────── Cafe Mini Cards ────── */
+    .cafe-section {
+      margin-top: 14px;
+    }
+    .cafe-section-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-2);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cafe-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .cafe-mini-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 14px 16px;
+      backdrop-filter: blur(10px);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .cafe-mini-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(78,205,196,0.3);
+    }
+    .cafe-mini-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      line-height: 1.35;
+    }
+    .cafe-mini-dist {
+      font-size: 0.7rem;
+      color: #4ecdc4;
+      margin-bottom: 6px;
+    }
+    .cafe-mini-must {
+      font-size: 0.73rem;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+    .cafe-mini-note {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* ────── Underground Street Tips ────── */
+    .street-tips-list {
+      margin-top: 12px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .street-tips-list li {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      display: flex;
+      gap: 7px;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+    .street-tips-list li::before {
+      content: '›';
+      flex-shrink: 0;
+      color: var(--accent-2);
+      font-weight: 700;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .street-tips-list strong { color: var(--text-primary); font-weight: 600; }
+    @media (max-width: 600px) {
+      .cafe-grid { grid-template-columns: 1fr; }
+    }
     .transport-card {
       background: var(--glass-bg);
       backdrop-filter: blur(16px);
@@ -732,6 +930,30 @@
         </div>
       </div>
     </div>
+    <!-- 機場 → 西面站 詳細步驟 -->
+    <div class="airport-steps-card">
+      <div class="airport-steps-title">🚇 機場 → 西面站 詳細步驟（全程約 40 分鐘）</div>
+      <div class="airport-steps-list">
+        <div class="airport-step">
+          <div class="airport-step-num">1</div>
+          <div class="airport-step-text">入境後在 <strong>CU 便利商店</strong>買 <em>T-money 卡</em>，儲值 ₩10,000（搭車用）</div>
+        </div>
+        <div class="airport-step">
+          <div class="airport-step-num">2</div>
+          <div class="airport-step-text">搭<strong>輕軌（紫線）</strong>往 <em>사상（沙上）</em> 方向，3站，約 7 分鐘，車資約 ₩1,300</div>
+        </div>
+        <div class="airport-step">
+          <div class="airport-step-num">3</div>
+          <div class="airport-step-text"><strong>沙上站（501）先刷卡出站</strong>（享轉乘優惠），跟<em>綠色 ② 號線</em>指標走，有電梯，步行 5～7 分鐘</div>
+        </div>
+        <div class="airport-step">
+          <div class="airport-step-num">4</div>
+          <div class="airport-step-text">搭<strong>地鐵 2 號線</strong>往 <em>장산</em> 方向，14 分鐘到西面站，<strong>7 號出口（有電梯）</strong>出站，步行 2 分鐘到 Gem Stay</div>
+        </div>
+      </div>
+      <div class="airport-steps-total">🕐 全程約 40 分鐘　💳 總車資約 <strong>₩1,800</strong>
+      </div>
+    </div>
   </section>
 
   <!-- ── 住宿基地（固定顯示，不隨頁籤切換） ── -->
@@ -748,6 +970,17 @@
           <strong>優勢：</strong>釜山交通核心樞紐，前往海雲台、廣安里、南浦洞、甘川洞均可直達，是五天行程最佳基地
         </div>
       </div>
+    </div>
+    <!-- 換錢所資訊 -->
+    <div class="money-exchange-card">
+      <div class="money-exchange-title">💱 換錢所推薦（西面站 7 號出口附近）</div>
+      <ul class="money-exchange-list">
+        <li><strong>那英換錢所</strong>：西面站 7 號出口步行 2 分鐘，接受台幣直接兌換，<strong>1,000 元大鈔匯率更好</strong></li>
+        <li><strong>營業時間</strong>：週一～六 09:00–19:00</li>
+        <li><strong>備用選擇</strong>：旁邊 Money Box，位置顯眼，匯率略差</li>
+        <li><strong>建議策略</strong>：機場只換 ₩2,000 夠搭車，到西面再換大額，匯率更划算</li>
+      </ul>
+      <div class="money-exchange-warn">⚠️ 那英換錢所週日休息，週日出發請先確認或改用備用選項</div>
     </div>
   </section>
 
@@ -809,6 +1042,36 @@
           <span class="badge badge-tip">📸 文青打卡熱點</span>
           <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.1617,129.0503&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>
         </div>
+        <!-- 田浦咖啡廳推薦 -->
+        <div class="cafe-section">
+          <div class="cafe-section-title">☕ 田浦咖啡廳推薦</div>
+          <div class="cafe-grid">
+            <div class="cafe-mini-card">
+              <div class="cafe-mini-name">Franklin Coffee Roasters</div>
+              <div class="cafe-mini-dist">📍 步行 4 分鐘（最近）</div>
+              <div class="cafe-mini-must">必點：香草 Longban</div>
+              <div class="cafe-mini-note">剛到釜山首選，安靜放鬆</div>
+            </div>
+            <div class="cafe-mini-card">
+              <div class="cafe-mini-name">STRUT COFFEE</div>
+              <div class="cafe-mini-dist">📍 步行 15 分鐘</div>
+              <div class="cafe-mini-must">必點：精品豆冰美式 ₩5,300</div>
+              <div class="cafe-mini-note">2025 世界百大咖啡</div>
+            </div>
+            <div class="cafe-mini-card">
+              <div class="cafe-mini-name">OFF COURSE</div>
+              <div class="cafe-mini-dist">📍 步行 15 分鐘</div>
+              <div class="cafe-mini-must">必點：可麗露、酥脆可頌</div>
+              <div class="cafe-mini-note">5 層樓，頂樓露天泳池</div>
+            </div>
+            <div class="cafe-mini-card">
+              <div class="cafe-mini-name">FM Coffee House</div>
+              <div class="cafe-mini-dist">📍 步行 15 分鐘</div>
+              <div class="cafe-mini-must">必點：時令水果派</div>
+              <div class="cafe-mini-note">田浦老牌，有二樓露台</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="card">
         <div class="card-icon">🛍️</div>
@@ -816,7 +1079,15 @@
         <div class="card-desc">西面站正下方的大型地下購物街，美妝、服飾、配件、小吃全部囊括，延伸數百公尺。不買東西只逛完全沒壓力，是認識釜山現代商業面的最佳入口。</div>
         <div class="card-addr">📍 西面站地下，釜山鎮區</div>
         <div class="transit-info">步行，西面站地下即達</div>
-        <div class="card-footer">
+        <!-- 地下街購物 Tips -->
+        <ul class="street-tips-list">
+          <li>從 <strong>2 號出口</strong>進入，往裡走，女裝最集中</li>
+          <li>₩10,000（約台幣 240 元）起跳攤位很多</li>
+          <li>推薦：<strong>Square 101</strong>、<strong>Monologue</strong>（牛仔褲 ₩10,000）</li>
+          <li>⚠️ <strong>下午 12:00 後才開門</strong>，早上去多數店關著</li>
+          <li>帶現金，部分攤位不收刷卡</li>
+        </ul>
+        <div class="card-footer" style="margin-top:14px;">
           <span class="badge badge-free">✓ 免費逛街</span>
           <span class="badge badge-tip">🛍 住宿旁直達</span>
           <a class="transit-btn" href="https://www.google.com/maps/dir/?api=1&origin=35.1581,129.0589&destination=35.1575,129.0591&travelmode=transit" target="_blank" rel="noopener">🗺️ Google Maps 導航</a>

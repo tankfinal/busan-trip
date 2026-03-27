@@ -1229,9 +1229,151 @@
     }
     .metro-lightbox-close:hover { background: rgba(255,107,107,0.6); }
 
+    /* ────── Theme Toggle Button ────── */
+    .theme-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 999;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(12px);
+      transition: all 0.22s ease;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .theme-toggle:hover { transform: scale(1.05); }
+
+    /* ────── Light Theme ────── */
+    .theme-light {
+      --bg: #eef6ff;
+      --bg-2: #ffffff;
+      --accent: #e05252;
+      --accent-glow: rgba(224,82,82,0.18);
+      --accent-2: #009990;
+      --glass-bg: rgba(255,255,255,0.88);
+      --glass-border: rgba(0,0,0,0.09);
+      --glass-hover: rgba(255,255,255,0.98);
+      --text-primary: #1a2b3c;
+      --text-secondary: #4a5a6a;
+      --text-muted: #8a9aaa;
+      --badge-free-bg: rgba(22,163,74,0.1);
+      --badge-free-color: #16a34a;
+      --badge-free-border: rgba(22,163,74,0.28);
+      --badge-cheap-bg: rgba(180,83,9,0.1);
+      --badge-cheap-color: #b45309;
+      --badge-cheap-border: rgba(180,83,9,0.28);
+      --badge-paid-bg: rgba(220,38,38,0.1);
+      --badge-paid-color: #dc2626;
+      --badge-paid-border: rgba(220,38,38,0.25);
+      --badge-tip-bg: rgba(0,153,144,0.1);
+      --badge-tip-color: #009990;
+      --badge-tip-border: rgba(0,153,144,0.25);
+    }
+    .theme-light body {
+      background: var(--bg);
+    }
+    .theme-light .hero {
+      background: linear-gradient(160deg, #b8d9f5 0%, #d6eeff 40%, #e8f5ff 70%, #f0f9ff 100%);
+    }
+    .theme-light .hero-wave path { fill: #eef6ff; }
+    .theme-light .hero-title { color: #1a2b3c; text-shadow: none; }
+    .theme-light .hero-subtitle, .theme-light .hero-meta { color: #4a5a6a; }
+    .theme-light .flight-card {
+      background: rgba(255,255,255,0.85);
+      border-color: rgba(0,0,0,0.1);
+      color: #1a2b3c;
+    }
+    .theme-light .tab-bar-wrapper {
+      background: rgba(238,246,255,0.95);
+      border-color: rgba(0,0,0,0.08);
+    }
+    .theme-light .tab-btn {
+      border-color: rgba(0,0,0,0.1);
+      color: #4a5a6a;
+    }
+    .theme-light .tab-btn:hover {
+      background: rgba(0,0,0,0.04);
+      border-color: rgba(0,0,0,0.15);
+      color: #1a2b3c;
+    }
+    .theme-light .tab-btn.active {
+      background: rgba(224,82,82,0.1);
+      border-color: rgba(224,82,82,0.4);
+      color: #e05252;
+    }
+    .theme-light .card {
+      background: #ffffff;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      border-color: rgba(0,0,0,0.07);
+    }
+    .theme-light .card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      border-color: rgba(0,0,0,0.1);
+    }
+    .theme-light .transit-details {
+      background: rgba(0,153,144,0.05);
+      border-color: rgba(0,153,144,0.2);
+    }
+    .theme-light .transit-details summary { color: #009990; }
+    .theme-light .transit-step { border-bottom-color: rgba(0,0,0,0.06); }
+    .theme-light .transit-warn {
+      background: rgba(255,165,2,0.1);
+      color: #b45309;
+    }
+    .theme-light .spot-guide-warn { color: #b45309; }
+    .theme-light .transit-step code {
+      background: rgba(0,0,0,0.07);
+      color: #1a2b3c;
+      border-radius: 4px;
+      padding: 1px 5px;
+    }
+    .theme-light .day-header { border-color: rgba(0,0,0,0.08); }
+    .theme-light .day-num-badge {
+      background: rgba(0,0,0,0.07);
+      color: #4a5a6a;
+    }
+    .theme-light .money-exchange-card,
+    .theme-light .metro-card,
+    .theme-light .accom-card,
+    .theme-light .transport-section {
+      background: rgba(255,255,255,0.88);
+      border-color: rgba(0,0,0,0.08);
+    }
+    .theme-light .money-exchange-title { color: #009990; }
+    .theme-light .money-exchange-warn {
+      background: rgba(255,165,2,0.1);
+      color: #b45309;
+      border-color: rgba(255,165,2,0.25);
+    }
+    .theme-light .map-btn.naver-btn { background: rgba(3,199,90,0.12); color: #02a84a; border-color: rgba(3,199,90,0.3); }
+    .theme-light .map-btn.kakao-btn { background: rgba(254,229,0,0.15); color: #7a6800; border-color: rgba(254,229,0,0.4); }
+    .theme-light .hero-bg-orb-1 { background: radial-gradient(circle, #7bbfe8, transparent); opacity: 0.35; }
+    .theme-light .hero-bg-orb-2 { background: radial-gradient(circle, #f9a8a8, transparent); opacity: 0.2; }
+    .theme-light .converter-card,
+    .theme-light .breakfast-section { background: rgba(255,255,255,0.88); border-color: rgba(0,0,0,0.08); }
+    .theme-light .breakfast-card { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.07); }
+    .theme-light .breakfast-name { color: #1a2b3c; }
+    .theme-light .breakfast-kr { color: #009990; }
+    .theme-light code { background: rgba(0,0,0,0.06); color: #1a2b3c; border-radius: 4px; padding: 1px 5px; }
+
   </style>
 </head>
 <body>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="切換主題">
+    <span id="themeIcon">☀️</span>
+    <span id="themeLabel">清新模式</span>
+  </button>
 
 <!-- ── Hero ── -->
 <header class="hero">
@@ -2836,6 +2978,37 @@
   if (document.readyState !== 'loading') {
     initMaps();
   }
+
+  // ── Theme Toggle ──
+  (function() {
+    const html = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    const label = document.getElementById('themeLabel');
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        html.classList.add('theme-light');
+        icon.textContent = '🌙';
+        label.textContent = '夜間模式';
+      } else {
+        html.classList.remove('theme-light');
+        icon.textContent = '☀️';
+        label.textContent = '清新模式';
+      }
+    }
+
+    // Restore saved preference
+    const saved = localStorage.getItem('busanTheme') || 'dark';
+    applyTheme(saved);
+
+    btn.addEventListener('click', function() {
+      const current = html.classList.contains('theme-light') ? 'light' : 'dark';
+      const next = current === 'light' ? 'dark' : 'light';
+      localStorage.setItem('busanTheme', next);
+      applyTheme(next);
+    });
+  })();
 
   // Metro map lightbox
   document.getElementById('openMetroMap').addEventListener('click', function() {

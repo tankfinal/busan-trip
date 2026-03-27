@@ -587,6 +587,48 @@
     .day-tips .card { --card-accent: linear-gradient(90deg, #4ecdc4, #1abc9c); --card-glow: 0 0 24px rgba(78,205,196,0.15); }
 
     /* ────── Food Block ────── */
+    /* ────── Spot Guide (吃/逛/買) ────── */
+    .spot-guide {
+      margin-top: 14px;
+      border-top: 1px solid var(--glass-border);
+      padding-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .spot-guide-row {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .spot-guide-icon {
+      font-size: 1rem;
+      width: 22px;
+      flex-shrink: 0;
+    }
+    .spot-guide-body {}
+    .spot-guide-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--accent-2);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .spot-guide-text {
+      font-size: 0.77rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .spot-guide-text strong {
+      color: var(--text-primary);
+    }
+    .spot-guide-warn {
+      font-size: 0.72rem;
+      color: #ffa502;
+      margin-top: 1px;
+    }
+
     .food-block {
       margin-top: 28px;
       background: linear-gradient(135deg, rgba(255,165,2,0.07), rgba(255,107,107,0.05));
@@ -1416,6 +1458,29 @@
         <div class="card-icon">☕</div>
         <div class="card-name">田浦咖啡街</div>
         <div class="card-desc">距離西面站僅一站（田浦站），是釜山最著名的文青咖啡一條街。數十家個性咖啡廳林立，建築風格各異，適合搭機後放鬆漫步。傍晚燈光亮起更有氣氛，隨便走進一家都有好拍的角落。</div>
+        <div class="spot-guide">
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🍽️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">吃</div>
+              <div class="spot-guide-text"><strong>Crashop 迷你可頌</strong> 20種口味 ₩2,500 ｜ <strong>街邊辣炒年糕</strong>（떡볶이）₩2,000 ｜ <strong>Bao Haus</strong> 台式刈包（台灣人開的救星）</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🛍️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">逛</div>
+              <div class="spot-guide-text">各主題咖啡廳巷弄（工業/日系/花藝風）｜ Cookie The Door 造型餅乾 ｜ 巷內 vintage 選品雜貨小店</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🎁</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">必買</div>
+              <div class="spot-guide-text"><strong>Crashop 可頌盒裝</strong>（帶走）｜ <strong>Cookie House 造型餅乾</strong>（送禮）｜ 精品烘焙豆真空包</div>
+            </div>
+          </div>
+        </div>
         <div class="card-addr">📍 田浦洞，地鐵 2 號線「田浦站」附近</div>
         <div class="transit-info">地鐵2號線 219西面 → 218田浦（1站，約2分鐘）</div>
         <div class="card-footer">
@@ -1461,6 +1526,29 @@
         <div class="card-icon">🛍️</div>
         <div class="card-name">西面地下街</div>
         <div class="card-desc">西面站正下方的大型地下購物街，美妝、服飾、配件、小吃全部囊括，延伸數百公尺。不買東西只逛完全沒壓力，是認識釜山現代商業面的最佳入口。</div>
+        <div class="spot-guide">
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🍽️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">吃</div>
+              <div class="spot-guide-text">出口上方<strong>西面食堂街</strong>（橘色帳篷攤）｜ <strong>豬肉湯飯</strong>（돼지국밥）₩9,000 ｜ 傳統炸雞、蔥煎餅</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🛍️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">逛</div>
+              <div class="spot-guide-text">K-fashion 單品 ₩10,000起 ｜ Etude House、Innisfree 等 <strong>K-beauty 連鎖</strong>（比免稅店便宜 20–40%）｜ 全長 500 公尺，從 <strong>2號出口</strong>進入</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🎁</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">必買</div>
+              <div class="spot-guide-text"><strong>K-beauty 保濕/防曬</strong>｜ 飾品耳環 ₩5,000起 ｜ Mediheal、Papa Recipe <strong>面膜囤貨</strong></div>
+            </div>
+          </div>
+        </div>
         <div class="card-addr">📍 西面站地下，釜山鎮區</div>
         <div class="transit-info">步行，西面站地下即達</div>
         <!-- 地下街購物 Tips -->
@@ -1484,6 +1572,29 @@
         <div class="card-icon">🏬</div>
         <div class="card-name">樂天百貨釜山總店（含免稅店）</div>
         <div class="card-desc">亞洲最大規模樂天百貨之一，緊鄰西面站。地下食品樓層有各式韓國熟食、甜點與伴手禮，價格平實。免稅店在同棟樓，回程前採購超方便。</div>
+        <div class="spot-guide">
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🍽️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">吃</div>
+              <div class="spot-guide-text"><strong>B1 超市熟食</strong>：炸雞、紫菜飯捲、豬腳 ₩3,000起 ｜ 9F 餐廳街：日式、韓牛燒烤</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🛍️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">逛</div>
+              <div class="spot-guide-text">7F–8F <strong>免稅店</strong>（AHC、IOPE、CLIO，護照帶好）｜ 地下<strong>樂天超市</strong>零食伴手禮一次補齊</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🎁</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">必買</div>
+              <div class="spot-guide-text"><strong>明太魚卵（명란）</strong>真空包 ₩15,000 ｜ <strong>大鮮燒酒（대선소주）</strong>釜山在地品牌 ₩1,500 ｜ <strong>海苔禮盒</strong> ₩8,000起</div>
+            </div>
+          </div>
+        </div>
         <div class="card-addr">📍 Jungang-daero, Busanjin-gu（西面站旁）</div>
         <div class="transit-info">步行，西面站出口旁</div>
         <div class="card-footer">
@@ -1600,6 +1711,29 @@
         <div class="card-icon">🛕</div>
         <div class="card-name">海東龍宮寺</div>
         <div class="card-desc">建在海蝕崖上的千年佛寺，浪花拍打岩石，香火與海景同框，是韓國極少見的海岸寺廟奇景。早晨人少光線絕美，是全釜山最值得拍的景點之一。建議上午第一站前往。</div>
+        <div class="spot-guide">
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🍽️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">吃</div>
+              <div class="spot-guide-text">入口坡道攤位：<strong>씨앗호떡（種子甜煎餅）</strong> ₩2,000 必吃 ｜ <strong>魚板湯串</strong>（어묵） ₩1,000</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🛍️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">逛</div>
+              <div class="spot-guide-text">沿海岩石寺廟全程步行 ｜ 坡道紀念品店：手繪明信片、寺廟小物 ｜ 寺內掛<strong>祈願燈籠</strong> ₩3,000（工作人員協助）</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🎁</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">必買</div>
+              <div class="spot-guide-text"><strong>手繪木刻吊飾</strong> ₩3,000–5,000 ｜ 寺廟限定平安符、念珠</div>
+            </div>
+          </div>
+        </div>
         <div class="card-addr">📍 Haedong Yonggungsa Temple, 86 Yonggung-gil, Gijang-gun（機張郡）</div>
         <div class="transit-info">地鐵2號線 219西面 → 203海雲台站 7號出口，搭181/100號巴士於 <code>용궁사.국립수산과학원</code>（站號 16069）下車（約70分鐘）；回程過馬路至對面站號 16003⚠️ 搭車返回</div>
         <div class="card-footer">
@@ -1616,6 +1750,29 @@
         <div class="card-icon">🦞</div>
         <div class="card-name">機張市場 長腳蟹美食</div>
         <div class="card-desc">機張以長腳蟹（대게）聞名全韓，市場周邊海鮮餐廳競爭激烈，螃蟹肉質鮮甜，價格遠比市區實惠。螃蟹粥、生蝦蓋飯、辣炒螃蟹都值得一試，午餐在此解決最划算。</div>
+        <div class="spot-guide">
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🍽️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">吃</div>
+              <div class="spot-guide-text">指著水槽活蟹確認重量→樓上料理：<strong>雪蟹（홍게）</strong> ₩30,000+/kg，附蟹肉炒飯 ₩6,000/人 ｜ <strong>烤海鰻（아나고구이）</strong> ₩20,000<br><span class="spot-guide-warn">💡 問價格：「얼마예요?」拿計算機讓對方打數字</span></div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🛍️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">逛</div>
+              <div class="spot-guide-text">一樓活蟹水槽大廳可自由走動比價 ｜ 外圍乾貨區：海帶、小魚乾</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🎁</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">必買</div>
+              <div class="spot-guide-text"><strong>機張海帶（기장 미역）</strong>真空包 ₩10,000–20,000，全國頂級，送禮超實用 ｜ <strong>機張小魚乾（기장 멸치）</strong> ₩10,000</div>
+            </div>
+          </div>
+        </div>
         <div class="card-addr">📍 Gijang Market, 16 Eumnae-ro 104beon-gil, Gijang-gun（機張郡）</div>
         <div class="transit-info">龍宮寺附近搭巴士 or 計程車（約15分鐘）</div>
         <div class="card-footer">
@@ -1648,6 +1805,29 @@
         <div class="card-icon">🌉</div>
         <div class="card-name">廣安里海灘 × 廣安大橋燈光秀</div>
         <div class="card-desc">全長 7.4 公里的雙層大橋，夜間燈光秀每晚定時點亮，在廣安里海灘正對大橋欣賞是最佳免費視角。沿岸咖啡廳、小吃攤密布，魚板湯、炸物隨手可得。</div>
+        <div class="spot-guide">
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🍽️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">吃</div>
+              <div class="spot-guide-text"><strong>烤蛤蜊（조개구이）</strong>海灘旁餐廳現烤 ₩20,000起 ｜ <strong>밀면（釜山小麥冷麵）</strong> ₩8,000，首爾吃不到的在地麵 ｜ 民樂活魚中心生魚片 ₩30,000起/人</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🛍️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">逛</div>
+              <div class="spot-guide-text">沿海灘步道散步看<strong>廣安大橋燈光秀</strong>（日落後最美）｜ Millak The Market 文創選品空間</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🎁</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">必買</div>
+              <div class="spot-guide-text">Orangebada <strong>在地明信片</strong> ₩1,500–2,000 ｜ 民樂魚街海鮮真空外帶（現場請攤商幫忙包裝）</div>
+            </div>
+          </div>
+        </div>
         <div class="card-addr">📍 水營區 廣安海濱路 219（廣安里海灘）</div>
         <div class="transit-info">地鐵2號線 209廣安站下車 5號出口，步行5分鐘</div>
         <div class="card-footer">
@@ -1712,6 +1892,29 @@
         <div class="card-icon">🎨</div>
         <div class="card-name">甘川洞文化村</div>
         <div class="card-desc">層疊山坡上的彩色小屋群，韓版聖托里尼。巷弄間藏著壁畫、裝置藝術與特色小店，自由漫步探索即可。地圖 ₩ 2,000 含紀念小禮物，物超所值。建議上午前往，人少光線好。</div>
+        <div class="spot-guide">
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🍽️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">吃</div>
+              <div class="spot-guide-text"><strong>凍啤酒 Slush（맥주슬러시）</strong>村內限定 ₩5,000 ｜ <strong>造型棉花糖</strong>現場塑形 ₩5,000–8,000 ｜ 露天咖啡廳俯瞰彩色屋頂 ₩5,000–7,000</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🛍️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">逛</div>
+              <div class="spot-guide-text">買入口<strong>集章地圖 ₩2,000</strong>（含小禮物），按圖找小王子雕像等裝置 ｜ 藝術家工作室、韓式拍貼機（道具免費借）</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🎁</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">必買</div>
+              <div class="spot-guide-text"><strong>人像漫畫素描</strong> ₩7,000–10,000（裱框帶回超有紀念價值）｜ 限定鳥瞰彩色屋頂<strong>明信片組</strong> ₩3,000–5,000</div>
+            </div>
+          </div>
+        </div>
         <div class="card-addr">📍 203 Gamnae 2-ro, Saha-gu（沙下區甘川洞）</div>
         <div class="transit-info">地鐵1號線 119西面 → 109土城站 6號出口，於 <code>부산대학병원.토성역</code>（站號 02081）搭 사하1-1 / 서구2號小巴（約40分鐘）</div>
         <div class="card-footer">
@@ -1728,6 +1931,29 @@
         <div class="card-icon">🐟</div>
         <div class="card-name">札嘎其市場</div>
         <div class="card-desc">韓國規模最大的海鮮市場，一樓是活魚攤販，二樓可加工代客料理。生章魚、帝王蟹、活蝦、海螺應有盡有，現買現吃最新鮮。生章魚入口彈牙鮮甜，是釜山必體驗的美食。</div>
+        <div class="spot-guide">
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🍽️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">吃</div>
+              <div class="spot-guide-text">一樓挑<strong>比目魚（광어）</strong>→二樓料理，生魚片+辣魚湯 2人約 ₩60,000–80,000，加工費 ₩5,000/人<br><span class="spot-guide-warn">💡 確認含魚總價：「생선값 포함해서 얼마예요?」</span></div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🛍️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">逛</div>
+              <div class="spot-guide-text">一樓室外<strong>露天阿姨攤</strong>，蝦米、醃漬品最原汁原味 ｜ 入口外魚板串小攤 ₩1,000</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🎁</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">必買</div>
+              <div class="spot-guide-text"><strong>삼진어묵 魚板禮盒</strong>（市場旁名店）各口味真空包 ₩10,000–20,000 ｜ <strong>乾蝦米（건새우）</strong> ₩5,000，煮湯提鮮帶回台灣</div>
+            </div>
+          </div>
+        </div>
         <div class="card-addr">📍 52 Jagalchihaean-ro, Jung-gu（中區札嘎其海岸路 52）</div>
         <div class="transit-info">地鐵1號線 110札嘎其站下車，步行1分鐘</div>
         <div class="card-footer">
@@ -1744,6 +1970,29 @@
         <div class="card-icon">🏙️</div>
         <div class="card-name">南浦洞商圈</div>
         <div class="card-desc">釜山最熱鬧的老城區商圈，服飾、小吃、伴手禮林立。龍頭山公園登高可俯瞰港口與市景，周邊巷弄也有許多釜山道地小吃。</div>
+        <div class="spot-guide">
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🍽️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">吃</div>
+              <div class="spot-guide-text"><strong>BIFF廣場 씨앗호떡</strong> ₩2,000 南浦洞必吃排隊名物 ｜ <strong>충무김밥</strong> 細捲配辣花枝 ₩5,000 ｜ 富平罐頭夜市（週四–六 19:00–深夜）炸物串燒</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🛍️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">逛</div>
+              <div class="spot-guide-text"><strong>국제시장</strong>廉價雜貨、廚具、伴手禮迷宮 ｜ BIFF廣場地面韓星手印打卡 ｜ 釜山電影節廣場周邊小購物街</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🎁</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">必買</div>
+              <div class="spot-guide-text">국제시장<strong>韓式石鍋</strong>（比百貨便宜50%）｜ 彩色韓服髮帶、小荷包 ₩3,000–8,000</div>
+            </div>
+          </div>
+        </div>
         <div class="card-addr">📍 37-55 Yongdusan-gil, Jung-gu（中區龍頭山路）</div>
         <div class="transit-info">地鐵1號線 111南浦站，步行至龍頭山公園</div>
         <div class="card-footer">
@@ -1842,6 +2091,29 @@
         <div class="card-icon">⛵</div>
         <div class="card-name">The Bay 101（더베이101）</div>
         <div class="card-desc">海雲台濱海複合設施，有咖啡廳、餐廳與遊艇碼頭。白天可享海景配咖啡，晚上廣安大橋燈光秀與摩天大樓倒映海面，夜景絕美。戶外區域完全免費。</div>
+        <div class="spot-guide">
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🍽️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">吃</div>
+              <div class="spot-guide-text">露台 <strong>Cafe SIDE</strong> 海景咖啡 ₩6,000–8,000（傍晚搶靠海座位）｜ Fingers & Chat <strong>炸雞翅+啤酒</strong> 2人 ₩25,000–35,000</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🛍️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">逛</div>
+              <div class="spot-guide-text">遊艇碼頭傍晚散步拍廣安大橋倒影 ｜ <strong>遊艇體驗（요트 투어）</strong> ₩30,000–50,000/人，繞橋30–40分鐘，Klook可預訂</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🎁</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">必買</div>
+              <div class="spot-guide-text">帆船主題<strong>明信片</strong> ₩2,000–5,000 ｜ 遊艇體驗本身就是最好的紀念</div>
+            </div>
+          </div>
+        </div>
         <div class="card-addr">📍 APEC-ro 17, Haeundae-gu</div>
         <div class="transit-info">地鐵2號線 204冬柏站（동백역）1號出口，步行7分鐘</div>
         <div class="card-footer">
@@ -1858,6 +2130,29 @@
         <div class="card-icon">🏖️</div>
         <div class="card-name">海雲台海灘（해운대해수욕장）</div>
         <div class="card-desc">釜山最著名的海灘，白沙灘綿延 1.5 公里，沿岸摩天大樓與海浪共存。夏季熱鬧、春季人少舒適，是韓國代表性海灘景點。沿岸有豐富餐廳可用午餐。</div>
+        <div class="spot-guide">
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🍽️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">吃</div>
+              <div class="spot-guide-text">海雲台傳統市場（步行5分鐘）：<strong>해물파전</strong> 海鮮煎餅 ₩12,000 ｜ <strong>名物 hotteok</strong> ₩2,000 排隊名攤 ｜ 해변 景觀餐廳午餐 ₩15,000起</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🛍️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">逛</div>
+              <div class="spot-guide-text">1.5km 白沙灘散步 ｜ 往東走到 <strong>Mipo（미포）</strong>海景咖啡廳聚落，也是藍線公園起點</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🎁</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">必買</div>
+              <div class="spot-guide-text">傳統市場<strong>醃漬海鮮（어리굴젓）</strong>真空外帶 ｜ 市場攤商可代為真空包裝</div>
+            </div>
+          </div>
+        </div>
         <div class="card-addr">📍 海雲台區 海雲台海濱路 264 沿線</div>
         <div class="transit-info">地鐵2號線 203海雲台站（해운대역），步行5分鐘</div>
         <div class="card-footer">
@@ -1874,6 +2169,29 @@
         <div class="card-icon">🚂</div>
         <div class="card-name">海雲台藍線公園（해운대블루라인파크）</div>
         <div class="card-desc">廢棄鐵路改建的海岸觀光小火車，沿著懸崖邊行駛，車窗外是一望無際的東海美景。步道全線亦可免費步行漫遊，是釜山必訪打卡點，景色絕美。</div>
+        <div class="spot-guide">
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🍽️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">吃</div>
+              <div class="spot-guide-text">Mipo 站 <strong>Montee 104 Cafe</strong>：月台正上方，邊喝咖啡看列車通過 ₩6,000 ｜ 清沙浦站<strong>烤蛤蜊+烤鰻魚</strong> ₩30,000–50,000/人</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🛍️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">逛</div>
+              <div class="spot-guide-text"><strong>Sky Capsule 透明膠囊車</strong> ₩40,000/2人（⚠️ 務必提前在 KKday 訂票，現場排隊可能等 2–3 小時）｜ 海岸木棧道步行全程免費 ｜ 清沙浦雙胞胎燈塔打卡</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🎁</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">必買</div>
+              <div class="spot-guide-text">Mipo / 清沙浦站紀念品店：<strong>海岸列車主題杯子、徽章</strong> ₩5,000–15,000</div>
+            </div>
+          </div>
+        </div>
         <div class="card-addr">📍 13 Dalmaji-gil 62beon-gil, Haeundae-gu</div>
         <div class="transit-info">地鐵2號線 海雲台站步行，或搭 39/100/141號巴士至 <code>미포.문탠로드입구</code>（站號 09021）步行 10 分鐘</div>
         <div class="card-footer">
@@ -1943,6 +2261,29 @@
         <div class="card-icon">🛍️</div>
         <div class="card-name">西面青春街散步</div>
         <div class="card-desc">輕鬆晃，不用趕。西面青春街是釜山年輕人的潮流聚集地，各種平價服飾、小物、咖啡廳林立。買點小東西、吃個早午餐，悠閒開啟最後一天。</div>
+        <div class="spot-guide">
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🍽️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">吃</div>
+              <div class="spot-guide-text"><strong>豬肉湯飯街</strong>（할매국밥） ₩9,000 全天 ｜ 帳篷攤夜宵（族발/炸串）₩8,000起 ｜ Topokki 年糕<strong>吃到飽</strong> ₩13,000</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🛍️</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">逛</div>
+              <div class="spot-guide-text"><strong>Olive Young</strong> K-beauty 最後掃貨（買一送一常有）｜ <strong>노래방（KTV）</strong> 包廂 ₩15,000–20,000/小時，韓國夜間必體驗</div>
+            </div>
+          </div>
+          <div class="spot-guide-row">
+            <span class="spot-guide-icon">🎁</span>
+            <div class="spot-guide-body">
+              <div class="spot-guide-label">必買</div>
+              <div class="spot-guide-text">Olive Young <strong>K-beauty 彩妝護膚</strong>最後補貨 ｜ 散裝韓式零食攤 ₩1,000起，帶上飛機當零嘴</div>
+            </div>
+          </div>
+        </div>
         <div class="card-addr">📍 西面青春街（부산진구 서면）</div>
         <div class="transit-info">住宿步行即達，地鐵1號線/2號線 西面站</div>
         <div class="card-footer">

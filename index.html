@@ -629,6 +629,43 @@
       margin-top: 1px;
     }
 
+    .food-block {
+      margin-top: 28px;
+      background: linear-gradient(135deg, rgba(255,165,2,0.07), rgba(255,107,107,0.05));
+      border: 1px solid rgba(255,165,2,0.2);
+      border-radius: 14px;
+      padding: 20px 22px;
+      backdrop-filter: blur(10px);
+    }
+    .food-block-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #ffa502;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .food-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .food-list li {
+      font-size: 0.79rem;
+      color: var(--text-secondary);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+    .food-list li::before {
+      content: '🍴';
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      margin-top: 2px;
+    }
 
     .card-icon { font-size: 1.7rem; margin-bottom: 10px; }
     .card-name {
@@ -1567,6 +1604,7 @@
         </div>
       </div>
     </div>
+  </div>
 
   <!-- ══ Day 2 Panel ══ -->
   <div id="panel-2" class="day-panel day-2" role="tabpanel">
@@ -1785,6 +1823,7 @@
         </div>
       </div>
     </div>
+  </div>
 
   <!-- ══ Day 3 Panel ══ -->
   <div id="panel-3" class="day-panel day-3" role="tabpanel">
@@ -1966,6 +2005,7 @@
         </div>
       </div>
     </div>
+  </div>
 
   <!-- ══ Day 4 Panel ══ -->
   <div id="panel-4" class="day-panel day-4" role="tabpanel">
@@ -2133,6 +2173,7 @@
         </div>
       </div>
     </div>
+  </div>
 
   <!-- ══ Day 5 Panel ══ -->
   <div id="panel-5" class="day-panel day-5" role="tabpanel">
@@ -2228,6 +2269,8 @@
         機場巴士2號：西面站搭乘，₩6,000，行李限 2 件/30kg。
       </div>
     </div>
+
+  </div>
 
   <!-- ══ Tips Panel ══ -->
   <div id="panel-tips" class="day-panel day-tips" role="tabpanel">

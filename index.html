@@ -423,6 +423,35 @@
     }
     .accom-detail strong { color: var(--accent-2); font-weight: 600; }
 
+    /* ────── Luggage Info Card ────── */
+    .luggage-card {
+      background: linear-gradient(135deg, rgba(255, 193, 7, 0.12), rgba(255, 152, 0, 0.08));
+      border: 1px solid rgba(255, 193, 7, 0.3);
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin-top: 14px;
+    }
+    .luggage-card-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #ffc107;
+      margin-bottom: 10px;
+    }
+    .luggage-card-body {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.9;
+    }
+    .luggage-card-body strong { color: var(--accent-2); font-weight: 600; }
+    .luggage-card-img {
+      width: 100%;
+      max-width: 340px;
+      border-radius: 10px;
+      margin-top: 12px;
+      display: block;
+      border: 1px solid rgba(255, 193, 7, 0.25);
+    }
+
     /* ────── Tab Bar ────── */
     .tab-bar-wrapper {
       position: sticky;
@@ -1348,6 +1377,11 @@
       background: rgba(255,255,255,0.88);
       border-color: rgba(0,0,0,0.08);
     }
+    .theme-light .luggage-card {
+      background: rgba(255, 248, 220, 0.85);
+      border-color: rgba(200, 150, 0, 0.3);
+    }
+    .theme-light .luggage-card-title { color: #b45309; }
     .theme-light .money-exchange-title { color: #009990; }
     .theme-light .money-exchange-warn {
       background: rgba(255,165,2,0.1);
@@ -1485,6 +1519,17 @@
         </div>
       </div>
     </div>
+    <!-- 行李寄放資訊 -->
+    <div class="luggage-card">
+      <div class="luggage-card-title">🧳 行李寄放 &amp; Check-in 說明</div>
+      <div class="luggage-card-body">
+        <strong>Check-in 時間：</strong>下午 4:00 開始，飯店會在 <strong>3:30</strong> 傳送 check-in 資訊<br>
+        <strong>提早抵達？</strong>可將行李寄放在 <strong>2 樓 204 室</strong>，密碼：<strong>0505*</strong><br>
+        放好行李後就可以輕裝出門先去逛西面商圈 🎉
+        <img src="LuggageRoomPicture.jpg" alt="行李間 204 室" class="luggage-card-img" loading="lazy">
+      </div>
+    </div>
+
     <!-- 換錢所資訊 -->
     <div class="money-exchange-card">
       <div class="money-exchange-title">💱 換錢所推薦（西面站 7 號出口附近）</div>
